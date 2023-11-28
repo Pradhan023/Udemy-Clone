@@ -99,7 +99,78 @@
     display: flex;
     justify-content: space-around;
     height: fit-content;
+    position: relative;
 }
+.hoverBlock1{
+    display: none;
+}
+.hoverBlock1-btn1{
+    border: 1px solid;
+    width: fit-content;
+    padding: 12px 12px;
+    color: white;
+    background-color: black;
+}
+.hoverBlock1-btn1:hover{
+    background-color: #333333;
+}
+.hoverBlock1 p{
+    font-size: large;
+    font-weight: 700;
+    text-align: center;
+}
+.hang{
+    height: 68px;
+    width: 80px;
+    z-index: 2;
+    left: 0;
+    position: absolute;
+}
+.udemybussiness:hover .hoverBlock1{
+    position: absolute;
+    top: 48px;
+    right: 120px;
+    width: 18rem;
+    padding: 10px 5px;
+    z-index: 2;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 18px 0;
+}
+.hoverBlock2{
+    display: none;
+}
+.hoverBlock2 p{
+    font-size: large;
+    font-weight: 700;
+    text-align: center;
+}
+.hang1{
+    height: 68px;
+    width: 80px;
+    z-index: 2;
+    right: 20px;
+    position: absolute;
+}
+.udemytech:hover .hoverBlock2{
+    position: absolute;
+    top: 48px;
+    right: 0px;
+    width: 18rem;
+    padding: 10px 5px;
+    z-index: 2;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 18px 0;
+}
+
+/* cart */
 .cart{
     grid-area: 1/5/2/6;
     position: relative;

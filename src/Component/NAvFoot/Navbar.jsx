@@ -125,11 +125,24 @@ const Navbar = () => {
       
       {/* tech col */}
       <div className='navflex tech'>
-      <div>
+      <div className='udemybussiness'>
         <p>Udemy Business</p>
+        <div className='hang'></div>
+        {/* hover block1 */}
+        <div className='hoverBlock1' >
+          <p>Get your team access to over 25,000 top Udemy courses, anytime, anywhere.</p>
+          <div className='hoverBlock1-btn1'>Try Udemy Business</div>
+        </div>
+
       </div>
-      <div>
+      <div className='udemytech'>
         <p>Tech on Udemy</p>
+        <div className='hang1'></div>
+        {/* hover block2 */}
+        <div className='hoverBlock2'>
+          <p>Turn what you know into an opportunity and reach millions around the world.</p>
+          <div className='hoverBlock1-btn1'>Learn More</div>
+        </div>
       </div>
       </div>
 
