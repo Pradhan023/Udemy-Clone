@@ -26,31 +26,31 @@ const Navbar = () => {
     },
     {
       category:"Design",
-      content:["Web Design","Game Design","3D & Animation","Fashion Design","Other Design"]
+      content:["Web Design","Game Design","3D & Animation","Fashion Design"]
     },
     {
       category:"Marketing",
-      content:["Digital Marketing","Social Media Marketing","Public Relationship","Content Marketing","Product Marketing"]
+      content:["Digital Marketing","Social Media Marketing","Public Relationship","Content Marketing"]
     },
     {
       category:"Life Style",
-      content:["Arts & Crafts","Beauty & Makeup","Food & Beverage","Pet Care & Training","Travel"]
+      content:["Arts & Crafts","Beauty & Makeup","Food & Beverage","Pet Care & Training"]
     },
     {
       category:"Photography & Video",
-      content:["Digital Photography","Photography","Video Design","Commercial Photography","Photography Tools"]
+      content:["Digital Photography","Photography","Video Design","Commercial Photography"]
     },
     {
       category:"Music & Arts",
-      content:["Instruments","Music Production","Vocal","Music Software","Music Techniques"]
+      content:["Instruments","Music Production","Vocal","Music Software"]
     },
     {
       category:"Health & Fitness",
-      content:["Fitness","Sport","Yoga","Menatl Health","Dance"]
+      content:["Fitness","Sport","Yoga","Menatl Health"]
     },
     {
       category:"Teaching & Academic",
-      content:["Engineering","Math","Science","Socal Science","Teacher Training"]
+      content:["Engineering","Math","Science","Socal Science"]
     }
   ]
 
