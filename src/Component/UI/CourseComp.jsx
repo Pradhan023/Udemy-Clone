@@ -5,6 +5,8 @@ import { IoIosInformationCircle } from "react-icons/io";
 import { IoFilter } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 import ss from '../../assets/Screenshot.png'
+import { useContext } from 'react';
+import Contextstore from '../ContextStore/store';
 
 const CourseComp = () => {
     const params = useParams()
@@ -14,65 +16,110 @@ const CourseComp = () => {
     const filter = sub.filter(item=> params.category === item.category) 
     const content = filter[0].content
 
-    const data = [
-        {
-            id:1,
-            img:"https://img-c.udemycdn.com/course/240x135/8324_fa84_13.jpg",
-            heading:"Powerful Business Writing: How to Write Concisely",           
-            author:"Caroline McDevitt",
-            des:"A concise business writing course for punchy, professional and powerful writing – at work, at university, on your blog",
-            rating:"4.7",
-            price:499,
-            category:"Business",
-            subcat:"Communication"
-        },
-        {
-            id:1,
-            img:"https://img-c.udemycdn.com/course/240x135/8324_fa84_13.jpg",
-            heading:"Powerful Business Writing: How to Write Concisely",           
-            author:"Caroline McDevitt",
-            des:"A concise business writing course for punchy, professional and powerful writing – at work, at university, on your blog",
-            rating:"4.7",
-            price:499,
-            category:"Business",
-            subcat:"Communication"
-        },
-        {
-            id:1,
-            img:"https://img-c.udemycdn.com/course/240x135/8324_fa84_13.jpg",
-            heading:"Powerful Business Writing: How to Write Concisely",           
-            author:"Caroline McDevitt",
-            des:"A concise business writing course for punchy, professional and powerful writing – at work, at university, on your blog",
-            rating:"4.7",
-            price:499,
-            category:"Business",
-            subcat:"Communication"
-        },
-        {
-            id:1,
-            img:"https://img-c.udemycdn.com/course/240x135/8324_fa84_13.jpg",
-            heading:"Powerful Business Writing: How to Write Concisely",           
-            author:"Caroline McDevitt",
-            des:"A concise business writing course for punchy, professional and powerful writing – at work, at university, on your blog",
-            rating:"4.7",
-            price:499,
-            category:"Business",
-            subcat:"Communication"
-        },
-        {
-            id:1,
-            img:"https://img-c.udemycdn.com/course/240x135/8324_fa84_13.jpg",
-            heading:"Powerful Business Writing: How to Write Concisely",           
-            author:"Caroline McDevitt",
-            des:"A concise business writing course for punchy, professional and powerful writing – at work, at university, on your blog",
-            rating:"4.7",
-            price:499,
-            category:"Business",
-            subcat:"Communication"
-        },
-    ]
+    // const data = [
+    //     {
+    //         id:1,
+    //         img:"https://img-c.udemycdn.com/course/240x135/8324_fa84_13.jpg",
+    //         heading:"Powerful Business Writing: How to Write Concisely",           
+    //         author:"Caroline McDevitt",
+    //         des:"A concise business writing course for punchy, professional and powerful writing – at work, at university, on your blog",
+    //         rating:"4.7",
+    //         price:499,
+    //         category:"Business",
+    //         subcat:"Communication"
+    //     },
+    //     {
+    //         id:1,
+    //         img:"https://img-c.udemycdn.com/course/240x135/8324_fa84_13.jpg",
+    //         heading:"Powerful Business Writing: How to Write Concisely",           
+    //         author:"Caroline McDevitt",
+    //         des:"A concise business writing course for punchy, professional and powerful writing – at work, at university, on your blog",
+    //         rating:"4.7",
+    //         price:499,
+    //         category:"Business",
+    //         subcat:"Communication"
+    //     },
+    //     {
+    //         id:1,
+    //         img:"https://img-c.udemycdn.com/course/240x135/8324_fa84_13.jpg",
+    //         heading:"Powerful Business Writing: How to Write Concisely",           
+    //         author:"Caroline McDevitt",
+    //         des:"A concise business writing course for punchy, professional and powerful writing – at work, at university, on your blog",
+    //         rating:"4.7",
+    //         price:499,
+    //         category:"Business",
+    //         subcat:"Communication"
+    //     },
+    //     {
+    //         id:1,
+    //         img:"https://img-c.udemycdn.com/course/240x135/8324_fa84_13.jpg",
+    //         heading:"Powerful Business Writing: How to Write Concisely",           
+    //         author:"Caroline McDevitt",
+    //         des:"A concise business writing course for punchy, professional and powerful writing – at work, at university, on your blog",
+    //         rating:"4.7",
+    //         price:499,
+    //         category:"Business",
+    //         subcat:"Communication"
+    //     },
+    //     {
+    //         id:1,
+    //         img:"https://img-c.udemycdn.com/course/240x135/8324_fa84_13.jpg",
+    //         heading:"Powerful Business Writing: How to Write Concisely",           
+    //         author:"Caroline McDevitt",
+    //         des:"A concise business writing course for punchy, professional and powerful writing – at work, at university, on your blog",
+    //         rating:"4.7",
+    //         price:499,
+    //         category:"Business",
+    //         subcat:"Communication"
+    //     },
+    // ]
 
-    const businessPopular_Topics = ["PMI Project Management Professional(PMP)","Project Management","Data Modeling","Business Analysis","Real Estate Investing","Microsoft Power BI","SQl","PMI PMBOK","Data Analysis","Product Management"];
+    const businessPopular_Topics = [
+        {
+            category:"Business",
+            content:["PMI Project Management Professional(PMP)","Project Management","Data Modeling","Business Analysis","Real Estate Investing","Microsoft Power BI","SQl","PMI PMBOK","Data Analysis","Product Management"],
+        },
+        {
+            category:"Finance & Accounting",
+            content:["Stock Trading","Financial Analysis","Accounting","Investing","Forex Trading","Technical Analysis (finance)","Cryptocurrency","Financial Modeling","Algorithmic Trading","Options Trading"],
+        },
+        {
+            category:"IT & Software",
+            content:["AWS Certified Cloud Practitioner","Ethical Hackin","CompTIA A+","AWS Certified Solutions Architect - Associate","Amazon AWS","CompTIA Security+","Linux","Kubernetes","ChatGPT","Information Security"],
+        },
+        {
+            category:"Design",
+            content:["Blender","Graphic Design","User Experience Design","Adobe Photoshop","3D Modeling","Figma","Adobe Illustrator","Drawing","AutoCAD","Canva"],
+        },
+        {
+            category:"Marketing",
+            content:["Digital Marketing","Social Media Marketing","Facebook Ads","Marketing Strategy","Search Engine Optimization (SEO)","Google Ads (Adwords)","Instagram Marketing","Copywriting","ChatGPT","Facebook Marketing"],
+        },
+        {
+            category:"Life Style",
+            content:["Reiki","Energy Healing","Chess","Watercolor Painting","Watercolor Painting","Watercolor Painting","Hypnotherapy","Spiritual Healing","Astrology","Painting"],
+        },
+        {
+            category:"Photography & Video",
+            content:["Photography","Adobe Premiere","DaVinci Resolve","iPhone Photography","Video Editing","Video Production","Adobe Lightroom","Adobe After Effects","Adobe Photoshop","Filmmaking"],
+        },
+        {
+            category:"Music & Arts",
+            content:["Guitar","Music Production","Singing","Piano","Music Theory","Music Composition","FL Studio","DJ","Logic Pro","Songwriting"],
+        },
+        {
+            category:"Health & Fitness",
+            content:["Yoga","Nutrition","CBT Cognitive Behavioral Therapy","Meditation","Massage","Fitness","Herbalism","Qi Gong","Pilates","Holistic Medicine"],
+        },
+        {
+            category:"Teaching & Academic",
+            content:["Holistic Medicine","Math","Spanish Language","French Language","German Language","English Grammar","IELTS","Calculus","Statistics","Algebra"],
+        },
+    ];
+
+const filterpoptop = businessPopular_Topics.filter(item=> item.category === params.category)
+console.log(filterpoptop);
+
 
     const businessPopular_instutor = [
         {
@@ -81,15 +128,17 @@ const CourseComp = () => {
             des:"PMI Project Management Professional (PMP), PMI PMBOK",
             rating:4.7,
             stuNum:"310,635",
-            courseNo:18
+            courseNo:18,
+            category:"Business"
         },
         {
-            img:"	https://img-c.udemycdn.com/user/75x75/75004102_f8b0_2.jpg",
+            img:"https://img-c.udemycdn.com/user/75x75/75004102_f8b0_2.jpg",
             heading:"Maven Analytics",
             des:"Business Intelligence, Microsoft Power BI",
             rating:4.7,
             stuNum:"1,121,614",
-            courseNo:38
+            courseNo:38,
+            category:"Business"
         },
         {
             img:"https://img-c.udemycdn.com/user/75x75/8280056_7887_3.jpg",
@@ -97,7 +146,8 @@ const CourseComp = () => {
             des:"Data Analysis, Agile",
             rating:4.7,
             stuNum:"2,623,082",
-            courseNo:106
+            courseNo:106,
+            category:"Business"
         },
         {
             img:"https://img-c.udemycdn.com/user/75x75/8912846_1a61.jpg",
@@ -105,10 +155,340 @@ const CourseComp = () => {
             des:"PMI PMBOK, PMI Project Management Professional (PMP)",
             rating:4.7,
             stuNum:"766,529",
-            courseNo:38
-        }
+            courseNo:38,
+            category:"Business"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/8280056_7887_3.jpg",
+            heading:"365 Careers",
+            des:"Data Analysis, Agile",
+            rating:4.7,
+            stuNum:"2,623,082",
+            courseNo:108,
+            category:"Finance & Accounting"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/33900490_19da_2.jpg",
+            heading:"Mohsen Hassan",
+            des:"Stock Trading, Financial Trading",
+            rating:4.6,
+            stuNum:"373,818",
+            courseNo:11,
+            category:"Finance & Accounting"
+        },
+        {
+            img:"ttps://img-c.udemycdn.com/user/75x75/10634862_fb77.jpg",
+            heading:"Steve Ballinger, MBA",
+            des:"Stock Trading, Investing",
+            rating:4.5,
+            stuNum:"605,848",
+            courseNo:68,
+            category:"Finance & Accounting"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/14942868_3ed6_38.jpg",
+            heading:"Chris Haroun | 1.4 Million Students",
+            des:"Investing, Finance Fundamentals",
+            rating:4.6,
+            stuNum:"1,406,078",
+            courseNo:76,
+            category:"Finance & Accounting"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/16122994_284f_18.jpg",
+            heading:"Stephane Maarek | AWS Certified Cloud Practitioner",
+            des:"Amazon AWS, AWS Certified Cloud Practitioner",
+            rating:4.7,
+            stuNum:"2,276,158",
+            courseNo:64,
+            category:"IT & Software"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/27592028_e3fb_6.jpg",
+            heading:"Jason Dion • 1 Million+ Enrollments Worldwide",
+            des:"CompTIA Security+, CompTIA A+",
+            rating:4.6,
+            stuNum:"938,858",
+            courseNo:60,
+            category:"IT & Software"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/31303958_8529_3.jpg",
+            heading:"Mumshad Mannambeth",
+            des:"Kubernetes, Certified Kubernetes Administrator (CKA)",
+            rating:4.6,
+            stuNum:"929,236",
+            courseNo:18,
+            category:"IT & Software"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/58935_f800_5.jpg",
+            heading:"Scott Duffy  • 1.000.000+ Students",
+            des:"Microsoft Azure, AZ-900: Microsoft Azure Fundamentals",
+            rating:4.6,
+            stuNum:"1,055,033",
+            courseNo:60,
+            category:"IT & Software"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/11614232_b0fc.jpg",
+            heading:"Daniel Walter Scott",
+            des:"User Experience Design, Figma",
+            rating:4.7,
+            stuNum:"696,429",
+            courseNo:34,
+            category:"Design"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/16146540_ef4c_15.jpg",
+            heading:"Lindsay Marsh",
+            des:"Graphic Design, Adobe Illustrator",
+            rating:4.6,
+            stuNum:"367,114",
+            courseNo:13,
+            category:"Design"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/38516954_b11c_3.jpg",
+            heading:"Andrei Neagoie",
+            des:"User Experience Design, Mobile App Design",
+            rating:4.6,
+            stuNum:"1,123,305",
+            courseNo:25,
+            category:"Design"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/33027212_4271_10.jpg",
+            heading:"GameDev.tv Team",
+            des:"Blender, Game Development Fundamentals",
+            rating:4.7,
+            stuNum:"1,090,600",
+            courseNo:52,
+            category:"Design"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/36921905_7a32_6.jpg",
+            heading:"Robin & Jesper",
+            des:"Digital Marketing, Social Media Marketing",
+            rating:4.6,
+            stuNum:"320,368",
+            courseNo:24,
+            category:"Marketing"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/37939456_be61_5.jpg",
+            heading:"Joshua George",
+            des:"Search Engine Optimization (SEO), Link Building",
+            rating:4.7,
+            stuNum:"137,081",
+            courseNo:22,
+            category:"Marketing"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/4116740_b790_2.jpg",
+            heading:"Alex Genadinik",
+            des:"Search Engine Optimization (SEO), SEO Audit",
+            rating:4.5,
+            stuNum:"759,588",
+            courseNo:197,
+            category:"Marketing"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/10508972_337e_4.jpg",
+            heading:"COURSE ENVY",
+            des:"Marketing Strategy, Facebook Marketing",
+            rating:4.4,
+            stuNum:"522,970",
+            courseNo:29,
+            category:"Marketing"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/34229724_ec2e_3.jpg",
+            heading:"Graham Nicholls",
+            des:"Neuro-Linguistic Programming, EFT (Emotional Freedom Techniques)",
+            rating:4.7,
+            stuNum:"136,812",
+            courseNo:37,
+            category:"Life Style"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/27988174_e5c2.jpg",
+            heading:"Brent Eviston",
+            des:"Drawing, Sketching",
+            rating:4.8,
+            stuNum:"110,700",
+            courseNo:12,
+            category:"Life Style"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/779778_4469_3.jpg",
+            heading:"Lisa Powers",
+            des:"Reiki, Teacher Training",
+            rating:4.8,
+            stuNum:"226,687",
+            courseNo:5,
+            category:"Life Style"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/23121946_3025_4.jpg",
+            heading:"Melissa Crowhurst",
+            des:"Energy Healing, Spiritual Healing",
+            rating:4.8,
+            stuNum:"199,278",
+            courseNo:21,
+            category:"Life Style"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/317821_3cb5_10.jpg",
+            heading:"Phil Ebiner",
+            des:"Photography, Digital Photography",
+            rating:4.6,
+            stuNum:"2,862,770",
+            courseNo:222,
+            category:"Photography & Video"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/15601054_5545_28.jpg",
+            heading:"Louay Zambarakji",
+            des:"Video Editing, Color Grading",
+            rating:4.7,
+            stuNum:"420,091",
+            courseNo:18,
+            category:"Photography & Video"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/130091392_74a0_2.jpg",
+            heading:"Dan Britain",
+            des:"Video Editing, ChatGPT",
+            rating:4.5,
+            stuNum:"165,755",
+            courseNo:10,
+            category:"Photography & Video"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/37232048_8e49.jpg",
+            heading:"Dale McManus",
+            des:"Photography, Landscape Photography",
+            rating:4.6,
+            stuNum:"136,039",
+            courseNo:5,
+            category:"Photography & Video"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/913001_767b_4.jpg",
+            heading:"Jason Allen",
+            des:"Music Theory, Ableton Live",
+            rating:4.6,
+            stuNum:"283,539",
+            courseNo:117,
+            category:"Music & Arts"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/23566298_e66f_4.jpg",
+            heading:"Tomas George",
+            des:"Music Production, Music Mixing",
+            rating:4.6,
+            stuNum:"327,888",
+            courseNo:40,
+            category:"Music & Arts"
+        },
+        {
+            img:"ttps://img-c.udemycdn.com/user/75x75/5753906_1b3f_4.jpg",
+            heading:"Robin Hall",
+            des:"Piano, Keyboard Instrument",
+            rating:4.7,
+            stuNum:"413,402",
+            courseNo:5,
+            category:"Music & Arts"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/603974_a5c2_4.jpg",
+            heading:"Erich Andreas",
+            des:"Guitar, Acoustic Guitar",
+            rating:4.7,
+            stuNum:"405,813",
+            courseNo:20,
+            category:"Music & Arts"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/7240640_bf4c_2.jpg",
+            heading:"Mark Perren-Jones",
+            des:"Massage, Sports Massage",
+            rating:4.7,
+            stuNum:"221,529",
+            courseNo:77,
+            category:"Health & Fitness"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/21674826_0b4e_2.jpg",
+            heading:"Bodsphere - Health and Wellness",
+            des:"Yoga, Pranayama",
+            rating:4.8,
+            stuNum:"28,840",
+            courseNo:9,
+            category:"Health & Fitness"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/61192080_163c_4.jpg",
+            heading:"Michael Eric Everson",
+            des:"Massage, Sports Massage",
+            rating:4.7,
+            stuNum:"20,556",
+            courseNo:28,
+            category:"Health & Fitness"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/26801218_cefd_3.jpg",
+            heading:"Felix Harder",
+            des:"Fitness, Nutrition",
+            rating:4.6,
+            stuNum:"212,337",
+            courseNo:37,
+            category:"Health & Fitness"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/133884918_c87f.jpg",
+            heading:"Linguae Learning",
+            des:"Spanish Language, French Language",
+            rating:4.6,
+            stuNum:"402,978",
+            courseNo:32,
+            category:"Teaching & Academic"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/633228_a6b9_12.jpg",
+            heading:"Krista King",
+            des:"Calculus, Probability",
+            rating:4.7,
+            stuNum:"241,048",
+            courseNo:20,
+            category:"Teaching & Academic"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/403134_2c7a_5.jpg",
+            heading:"Keino Campbell, Esq.",
+            des:"IELTS, TOEFL",
+            rating:4.6,
+            stuNum:"398,752",
+            courseNo:12,
+            category:"Teaching & Academic"
+        },
+        {
+            img:"https://img-c.udemycdn.com/user/75x75/16912784_49c6_3.jpg",
+            heading:"Sandra 11Percent",
+            des:"German Language, Presentation Skills",
+            rating:4.7,
+            stuNum:"110,054",
+            courseNo:7,
+            category:"Teaching & Academic"
+        },
     ]
 
+    const Data = useContext(Contextstore)
+    // console.log(Data);
+
+    const cardData = Data && Data.filter(item=> params.category === item.category )
+    console.log(cardData);
 
   return (
     <div>
@@ -151,7 +531,13 @@ const CourseComp = () => {
             <div className='card-conatiner'>
             {/* cards */}
             {
-                data.map((item,index)=>{
+                cardData.filter(item=>{
+                    if (item.id%4 === 0) {
+                        return item
+                    }
+                }).map((item,index)=>{
+                    if(index < 5)
+                    {
                     return(
                         <div key={index} className='cardmain'>
                             <img src={item.img} />
@@ -161,6 +547,7 @@ const CourseComp = () => {
                             <h3>{`₹${item.price}`}</h3>
                         </div>
                     )
+                    }
                 })
             }
             </div>
@@ -170,7 +557,7 @@ const CourseComp = () => {
             <h2>Popular Topics</h2>
             <div className='popularTopics'>
                 {
-                    businessPopular_Topics.map((item,index)=>{
+                    filterpoptop[0].content.map((item,index)=>{
                         return(
                             <div key={index} className='pt-inner'>
                                 <p>{item}</p>
@@ -185,9 +572,9 @@ const CourseComp = () => {
             <h2>Popular Instructor</h2>
             <div className="popular-inst">
                 {
-                    businessPopular_instutor.map((item,index)=>{
+                    businessPopular_instutor.filter(item=>item.category === params.category).map((item,index)=>{
                         return(
-                            <div className='inst-inner'>
+                            <div key={index} className='inst-inner'>
                                 <img src={item.img} />
                                 <div className='inst-row'>
                                     <h3>{item.heading}</h3>
@@ -245,9 +632,34 @@ const CourseComp = () => {
                 {/* content card */}
 
                 <div>
+                    {
+                        cardData.filter(item=>{
+                            if (item.id%2 === 0) {
+                                return item
+                            }
+                        }).slice(0,3).map((item,index)=>{
+                            return(
+                                <div key={index} className='maincontentcard'>
+                                    <img src={item.img} />
+                                    <div>
+                                        <h3>{item.heading}</h3>
+                                        <p className='maindes'>{item.des}</p>
+                                        <p className='mainauthor'>{item.author}</p>
+                                        <h3>{`${item.rating} ⭐⭐⭐⭐⭐`}</h3>
+                                        <p className='maincourseDesc'>8 total .84 lectures .All Levels</p>
+                                    </div>
+                                    <h3>{"₹"+item.price}</h3>
+                                </div>
+                            )
+                        })
+                    }
                     <img className='maincontentimg' src={ss} />
                     {
-                        data.map((item,index)=>{
+                        cardData.filter(item=>{
+                            if (item.id%2 === 0) {
+                                return item
+                            }
+                        }).slice(3,8).map((item,index)=>{
                             return(
                                 <div key={index} className='maincontentcard'>
                                     <img src={item.img} />

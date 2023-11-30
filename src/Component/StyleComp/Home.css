@@ -209,6 +209,7 @@
 .learnerSection{
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
     /* gap: 10px 33px; */

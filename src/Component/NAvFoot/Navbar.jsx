@@ -136,12 +136,12 @@ const Navbar = () => {
 
       </div>
       <div className='udemytech'>
-        <p>Tech on Udemy</p>
+        <p onClick={()=>Nav("/techudemy")}>Tech on Udemy</p>
         <div className='hang1'></div>
         {/* hover block2 */}
         <div className='hoverBlock2'>
           <p>Turn what you know into an opportunity and reach millions around the world.</p>
-          <div className='hoverBlock1-btn1'>Learn More</div>
+          <div className='hoverBlock1-btn1' onClick={()=>Nav("/techudemy")}>Learn More</div>
         </div>
       </div>
       </div>

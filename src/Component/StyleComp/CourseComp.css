@@ -234,6 +234,9 @@
     padding-top: 20px;
     width: 62rem;
 }
+.maincontentcard img{
+    width: 25%;
+}
 .mainauthor{
     font-size: 13px;
 }
