@@ -483,7 +483,7 @@ const SubroutesComp = () => {
     ]
 
     const Data = useContext(Contextstore)
-    const cardData = Data && Data.filter(item=> params.category === item.category )
+    const cardData = Data && Data.filter(item=> subcategory === item.subcat )
 
   return (
     <div>
@@ -526,11 +526,7 @@ const SubroutesComp = () => {
                     <div className='card-conatiner'>
                     {/* cards */}
                     {
-                        cardData.filter(item=>{
-                            if (item.id%4 === 0) {
-                                return item
-                            }
-                        }).map((item,index)=>{
+                        cardData.map((item,index)=>{
                             if(index < 5)
                             {
                                 return(
@@ -628,11 +624,7 @@ const SubroutesComp = () => {
 
                         <div>
                             {
-                                cardData.filter(item=>{
-                                    if (item.id%2 === 0) {
-                                        return item
-                                    }
-                                }).slice(0,3).map((item,index)=>{
+                                cardData.slice(0,3).map((item,index)=>{
                                     return(
                                         <div key={index} className='maincontentcard'>
                                             <img src={item.img} />
@@ -650,11 +642,7 @@ const SubroutesComp = () => {
                             }
                             <img className='maincontentimg' src={ss} />
                             {
-                                cardData.filter(item=>{
-                                    if (item.id%2 === 0) {
-                                        return item
-                                    }
-                                }).slice(3,8).map((item,index)=>{
+                                cardData.slice(3,8).map((item,index)=>{
                                     return(
                                         <div key={index} className='maincontentcard'>
                                             <img src={item.img} />
