@@ -26,31 +26,31 @@ const Navbar = () => {
     },
     {
       category:"Design",
-      content:["Web Design","Game Design","3D & Animation","Fashion Design"]
+      content:["Web Design","Game Design","3D & Animation","Fashion Design","Other Design"]
     },
     {
       category:"Marketing",
-      content:["Digital Marketing","Social Media Marketing","Public Relationship","Content Marketing"]
+      content:["Digital Marketing","Social Media Marketing","Public Relationship","Content Marketing","Product Marketing"]
     },
     {
       category:"Life Style",
-      content:["Arts & Crafts","Beauty & Makeup","Food & Beverage","Pet Care & Training"]
+      content:["Arts & Crafts","Beauty & Makeup","Food & Beverage","Pet Care & Training","Travel"]
     },
     {
       category:"Photography & Video",
-      content:["Digital Photography","Photography","Video Design","Commercial Photography"]
+      content:["Digital Photography","Photography","Video Design","Commercial Photography","Photography Tools"]
     },
     {
       category:"Music & Arts",
-      content:["Instruments","Music Production","Vocal","Music Software"]
+      content:["Instruments","Music Production","Vocal","Music Software","Music Techniques"]
     },
     {
       category:"Health & Fitness",
-      content:["Fitness","Sport","Yoga","Menatl Health"]
+      content:["Fitness","Sport","Yoga","Menatl Health","Dance"]
     },
     {
       category:"Teaching & Academic",
-      content:["Engineering","Math","Science","Socal Science"]
+      content:["Engineering","Math","Science","Socal Science","Teacher Training"]
     }
   ]
 
@@ -155,10 +155,10 @@ const Navbar = () => {
        {/* login sign col */}
       <div className='navflex navbtn'>
         <div className='navbtn signin'>
-          <p>Log in</p>
+          <p onClick={()=>Nav('/login')}>Log in</p>
         </div>
         <div className='navbtn singup'>
-          <p>Sign up</p>
+          <p onClick={()=>Nav('signup')}>Sign up</p>
         </div>
         <div className='globebtn'>
           <IoGlobeOutline style={{fontSize:"23px",marginTop:"3px"}}/>
@@ -186,6 +186,7 @@ const Navbar = () => {
                   <p>Log in</p>
                   <p>Sign up</p>
                 </div>
+
 
                 {/* all category */}
 
