@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../StyleComp/Home.css'
 import { FaCirclePlay } from "react-icons/fa6";
 import axios from 'axios';
@@ -75,10 +75,25 @@ const goals = [
 
 // add to cart
 
-const addcartitem = async(item)=>{
-  // console.log(item);
-  await axios.post('http://localhost:5000/api/addcart',item);
-}
+const [items,setItems] =useState();
+    useEffect(()=>{
+        axios.get("https://udemyclone-api.onrender.com/api/getcartdata").
+        then((res)=>setItems(res.data)).catch((err)=>console.log("Cart error", err))
+    },[cardData])
+
+    const addcartitem = async(item)=>{
+        console.log(item.id);
+        console.log(items);
+        const letsfind = items.find((items)=>items.id === item.id)
+
+        if(letsfind)
+        {
+            alert("Items is already added Go to cart",Nav("/cart") );
+        }
+        else{
+            await axios.post('https://udemyclone-api.onrender.com/api/addcart',item);
+        }
+    }
 
   return (
     <div>

@@ -440,7 +440,7 @@ const CourseComp = () => {
 
     const [items,setItems] =useState();
     useEffect(()=>{
-        axios.get("http://localhost:5000/api/getcartdata").
+        axios.get("https://udemyclone-api.onrender.com/api/getcartdata").
         then((res)=>setItems(res.data)).catch((err)=>console.log("Cart error", err))
     },[cardData])
 
@@ -454,7 +454,7 @@ const CourseComp = () => {
             alert("Items is already added Go to cart",Nav("/cart") );
         }
         else{
-            await axios.post('http://localhost:5000/api/addcart',item);
+            await axios.post('https://udemyclone-api.onrender.com/api/addcart',item);
         }
     }
 

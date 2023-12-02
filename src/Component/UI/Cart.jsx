@@ -8,7 +8,7 @@ const Cart = () => {
   const [items,setItems] =useState([]);
   const Nav = useNavigate();
   useEffect(()=>{
-    axios.get("http://localhost:5000/api/getcartdata").
+    axios.get("https://udemyclone-api.onrender.com/api/getcartdata").
     then((res)=>setItems(res.data)).catch((err)=>console.log("Cart error", err))
   },[])
   // console.log(items.length);
@@ -34,14 +34,14 @@ const Cart = () => {
   const headers={
     "Content-Type":"application/json"
   }
-  const response = await fetch("http://localhost:5000/api/out/create-checkout-session",{
+  const response = await fetch("https://udemyclone-api.onrender.com/api/out/create-checkout-session",{
           method:"POST",
           headers:headers,
           body:JSON.stringify(body)
   })
-  await axios.post("http://localhost:5000/api/mylearning",items)
+  await axios.post("https://udemyclone-api.onrender.com/api/mylearning",items)
 
-  await axios.delete("http://localhost:5000/api/deleteallcart")
+  await axios.delete("https://udemyclone-api.onrender.com/api/deleteallcart")
   const session= await response.json();
 
   const result =stripe.redirectToCheckout({

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoIosArrowDown } from 'react-icons/io';
 import { IoFilter } from 'react-icons/io5';
 import { useLocation} from 'react-router-dom'
@@ -13,9 +13,24 @@ const SearchComp = () => {
 
     // add to cart
 
+    const [items,setItems] =useState();
+    useEffect(()=>{
+        axios.get("https://udemyclone-api.onrender.com/api/getcartdata").
+        then((res)=>setItems(res.data)).catch((err)=>console.log("Cart error", err))
+    },[cardData])
+
     const addcartitem = async(item)=>{
-        // console.log(item);
-        await axios.post('http://localhost:5000/api/addcart',item);
+        console.log(item.id);
+        console.log(items);
+        const letsfind = items.find((items)=>items.id === item.id)
+
+        if(letsfind)
+        {
+            alert("Items is already added Go to cart",Nav("/cart") );
+        }
+        else{
+            await axios.post('https://udemyclone-api.onrender.com/api/addcart',item);
+        }
     }
 
   return (
