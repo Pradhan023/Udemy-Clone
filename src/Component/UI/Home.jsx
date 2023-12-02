@@ -1,6 +1,7 @@
 import React from 'react'
 import '../StyleComp/Home.css'
 import { FaCirclePlay } from "react-icons/fa6";
+import axios from 'axios';
 
 const Home = () => {
   const data = [
@@ -71,6 +72,14 @@ const goals = [
     play:"Leadership: Practical Leadership Skills"
   },
 ]
+
+// add to cart
+
+const addcartitem = async(item)=>{
+  // console.log(item);
+  await axios.post('http://localhost:5000/api/addcart',item);
+}
+
   return (
     <div>
 
@@ -138,7 +147,7 @@ const goals = [
                           <h3>{`${item.heading.slice(0,50)}...`}</h3>
                           <span>{item.author}</span>
                           <p>{item.des}</p>
-                          <div className='addtocartbtn'>
+                          <div className='addtocartbtn' onClick={()=>addcartitem(item)}>
                           Add to cart
                           </div>
                       </div>
@@ -199,7 +208,7 @@ const goals = [
                           <h3>{`${item.heading.slice(0,50)}...`}</h3>
                           <span>{item.author}</span>
                           <p>{item.des}</p>
-                          <div className='addtocartbtn'>
+                          <div className='addtocartbtn' onClick={()=>addcartitem(item)}>
                           Add to cart
                           </div>
                       </div>

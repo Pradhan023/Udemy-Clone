@@ -6,6 +6,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import ss from '../../assets/Screenshot.png'
 import { useContext } from 'react';
 import Contextstore from '../ContextStore/store';
+import axios from 'axios';
 
 const SubroutesComp = () => {
     const params = useParams();
@@ -14,64 +15,6 @@ const SubroutesComp = () => {
     const sub = loc.state
     const filter = sub.filter(item=> params.category === item.category)
     const content = filter[0].content
-
-    // const data = [
-    //     {
-    //         id:1,
-    //         img:"https://img-c.udemycdn.com/course/240x135/8324_fa84_13.jpg",
-    //         heading:"Powerful Business Writing: How to Write Concisely",           
-    //         author:"Caroline McDevitt",
-    //         des:"A concise business writing course for punchy, professional and powerful writing – at work, at university, on your blog",
-    //         rating:"4.7",
-    //         price:499,
-    //         category:"Business",
-    //         subcat:"Communication"
-    //     },
-    //     {
-    //         id:1,
-    //         img:"https://img-c.udemycdn.com/course/240x135/8324_fa84_13.jpg",
-    //         heading:"Powerful Business Writing: How to Write Concisely",           
-    //         author:"Caroline McDevitt",
-    //         des:"A concise business writing course for punchy, professional and powerful writing – at work, at university, on your blog",
-    //         rating:"4.7",
-    //         price:499,
-    //         category:"Business",
-    //         subcat:"Communication"
-    //     },
-    //     {
-    //         id:1,
-    //         img:"https://img-c.udemycdn.com/course/240x135/8324_fa84_13.jpg",
-    //         heading:"Powerful Business Writing: How to Write Concisely",           
-    //         author:"Caroline McDevitt",
-    //         des:"A concise business writing course for punchy, professional and powerful writing – at work, at university, on your blog",
-    //         rating:"4.7",
-    //         price:499,
-    //         category:"Business",
-    //         subcat:"Communication"
-    //     },
-    //     {
-    //         id:1,
-    //         img:"https://img-c.udemycdn.com/course/240x135/8324_fa84_13.jpg",
-    //         heading:"Powerful Business Writing: How to Write Concisely",           
-    //         author:"Caroline McDevitt",
-    //         des:"A concise business writing course for punchy, professional and powerful writing – at work, at university, on your blog",
-    //         rating:"4.7",
-    //         price:499,
-    //         category:"Business",
-    //         subcat:"Communication"
-    //     },
-    //     {
-    //         id:1,
-    //         img:"https://img-c.udemycdn.com/course/240x135/8324_fa84_13.jpg",
-    //         heading:"Powerful Business Writing: How to Write Concisely",           
-    //         author:"Caroline McDevitt",
-    //         des:"A concise business writing course for punchy, professional and powerful writing – at work, at university, on your blog",
-    //         rating:"4.7",
-    //         price:499,
-    //         category:"Business",
-    //         subcat:"Communication"
-    //     },
-    // ]
 
     const businessPopular_Topics = [
         {
@@ -118,6 +61,13 @@ const SubroutesComp = () => {
 
     const filterpoptop = businessPopular_Topics.filter(item=> item.category === params.category)
 // console.log(filterpoptop);
+
+// addto cart
+
+const addcartitem = async(item)=>{
+    // console.log(item);
+    await axios.post('http://localhost:5000/api/addcart',item);
+}
 
     const businessPopular_instutor = [
         {
@@ -541,7 +491,7 @@ const SubroutesComp = () => {
                                             <h3>{`${item.heading.slice(0,50)}...`}</h3>
                                             <span>{item.author}</span>
                                             <p>{item.des}</p>
-                                            <div className='addtocartbtn'>
+                                            <div className='addtocartbtn' onClick={()=>addcartitem(item)}>
                                             Add to cart
                                             </div>
                                         </div>
@@ -650,7 +600,7 @@ const SubroutesComp = () => {
                                         <h3>{`${item.heading.slice(0,50)}...`}</h3>
                                         <span>{item.author}</span>
                                         <p>{item.des}</p>
-                                        <div className='mainaddtocartbtn'>
+                                        <div className='mainaddtocartbtn' onClick={()=>addcartitem(item)}>
                                         Add to cart
                                         </div>
                                     </div>
@@ -676,7 +626,7 @@ const SubroutesComp = () => {
                                         <h3>{`${item.heading.slice(0,50)}...`}</h3>
                                         <span>{item.author}</span>
                                         <p>{item.des}</p>
-                                        <div className='mainaddtocartbtn'>
+                                        <div className='mainaddtocartbtn' onClick={()=>addcartitem(item)}>
                                         Add to cart
                                         </div>
                                     </div>

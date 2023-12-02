@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../StyleComp/CourseComp.css'
-import { Link, useLocation, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { IoIosInformationCircle } from "react-icons/io";
 import { IoFilter } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 import ss from '../../assets/Screenshot.png'
 import { useContext } from 'react';
 import Contextstore from '../ContextStore/store';
+import axios from 'axios';
 
 const CourseComp = () => {
     const params = useParams()
@@ -15,6 +16,7 @@ const CourseComp = () => {
     const sub = loc.state
     const filter = sub.filter(item=> params.category === item.category) 
     const content = filter[0].content
+    const Nav = useNavigate()
 
     
 
@@ -61,8 +63,8 @@ const CourseComp = () => {
         },
     ];
 
-const filterpoptop = businessPopular_Topics.filter(item=> item.category === params.category)
-console.log(filterpoptop);
+    const filterpoptop = businessPopular_Topics.filter(item=> item.category === params.category)
+    // console.log(filterpoptop);
 
 
     const businessPopular_instutor = [
@@ -434,6 +436,29 @@ console.log(filterpoptop);
     const cardData = Data && Data.filter(item=> params.category === item.category )
     console.log(cardData);
 
+    // addto cart
+
+    const [items,setItems] =useState();
+    useEffect(()=>{
+        axios.get("http://localhost:5000/api/getcartdata").
+        then((res)=>setItems(res.data)).catch((err)=>console.log("Cart error", err))
+    },[cardData])
+
+    const addcartitem = async(item)=>{
+        console.log(item.id);
+        console.log(items);
+        const letsfind = items.find((items)=>items.id === item.id)
+
+        if(letsfind)
+        {
+            alert("Items is already added Go to cart",Nav("/cart") );
+        }
+        else{
+            await axios.post('http://localhost:5000/api/addcart',item);
+        }
+    }
+
+
   return (
     <div>
 
@@ -494,7 +519,7 @@ console.log(filterpoptop);
                                 <h3>{`${item.heading.slice(0,50)}...`}</h3>
                                 <span>{item.author}</span>
                                 <p>{item.des}</p>
-                                <div className='addtocartbtn'>
+                                <div className='addtocartbtn' onClick={()=>addcartitem(item)} >
                                 Add to cart
                                 </div>
                             </div>
@@ -608,7 +633,7 @@ console.log(filterpoptop);
                                         <h3>{`${item.heading.slice(0,50)}...`}</h3>
                                         <span>{item.author}</span>
                                         <p>{item.des}</p>
-                                        <div className='mainaddtocartbtn'>
+                                        <div className='mainaddtocartbtn' onClick={()=>addcartitem(item)}>
                                         Add to cart
                                         </div>
                                     </div>
@@ -640,7 +665,7 @@ console.log(filterpoptop);
                                         <h3>{`${item.heading.slice(0,50)}...`}</h3>
                                         <span>{item.author}</span>
                                         <p>{item.des}</p>
-                                        <div className='mainaddtocartbtn'>
+                                        <div className='mainaddtocartbtn' onClick={()=>addcartitem(item)}>
                                         Add to cart
                                         </div>
                                     </div>

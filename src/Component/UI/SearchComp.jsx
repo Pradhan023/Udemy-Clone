@@ -3,12 +3,21 @@ import { IoIosArrowDown } from 'react-icons/io';
 import { IoFilter } from 'react-icons/io5';
 import { useLocation} from 'react-router-dom'
 import '../StyleComp/searchcomp.css'
+import axios from 'axios';
 
 const SearchComp = () => {
     const loc = useLocation()
     const Data = loc.state.data
     const catstate = loc.state.state
-    console.log(loc);
+    // console.log(loc);
+
+    // add to cart
+
+    const addcartitem = async(item)=>{
+        // console.log(item);
+        await axios.post('http://localhost:5000/api/addcart',item);
+    }
+
   return (
     <div className='searchmainsection'>
         
@@ -62,7 +71,7 @@ const SearchComp = () => {
                                         <h3>{`${item.heading}`}</h3>
                                         <span>{item.author}</span>
                                         <p>{item.des}</p>
-                                        <div className='searchaddtocartbtn'>
+                                        <div className='searchaddtocartbtn' onClick={()=>addcartitem(item)}>
                                         Add to cart
                                         </div>
                                     </div>
