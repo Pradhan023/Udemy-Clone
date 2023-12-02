@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { IoIosArrowDown } from 'react-icons/io';
 import { IoFilter } from 'react-icons/io5';
-import { useLocation} from 'react-router-dom'
+import { useLocation, useNavigate} from 'react-router-dom'
 import '../StyleComp/searchcomp.css'
 import axios from 'axios';
 
@@ -10,6 +10,7 @@ const SearchComp = () => {
     const Data = loc.state.data
     const catstate = loc.state.state
     // console.log(loc);
+    const Nav = useNavigate()
 
     // add to cart
 
@@ -17,7 +18,7 @@ const SearchComp = () => {
     useEffect(()=>{
         axios.get("https://udemyclone-api.onrender.com/api/getcartdata").
         then((res)=>setItems(res.data)).catch((err)=>console.log("Cart error", err))
-    },[cardData])
+    },[catstate])
 
     const addcartitem = async(item)=>{
         console.log(item.id);

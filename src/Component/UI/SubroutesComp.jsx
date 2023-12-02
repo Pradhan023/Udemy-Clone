@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Link, useLocation, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { IoIosInformationCircle } from "react-icons/io";
 import { IoFilter } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
@@ -15,6 +15,7 @@ const SubroutesComp = () => {
     const sub = loc.state
     const filter = sub.filter(item=> params.category === item.category)
     const content = filter[0].content
+    const Nav = useNavigate()
 
     const businessPopular_Topics = [
         {
@@ -68,7 +69,7 @@ const [items,setItems] =useState();
     useEffect(()=>{
         axios.get("https://udemyclone-api.onrender.com/api/getcartdata").
         then((res)=>setItems(res.data)).catch((err)=>console.log("Cart error", err))
-    },[cardData])
+    },[filter])
 
     const addcartitem = async(item)=>{
         console.log(item.id);

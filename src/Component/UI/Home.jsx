@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import '../StyleComp/Home.css'
 import { FaCirclePlay } from "react-icons/fa6";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const data = [
@@ -73,13 +74,15 @@ const goals = [
   },
 ]
 
+const Nav = useNavigate()
+
 // add to cart
 
 const [items,setItems] =useState();
     useEffect(()=>{
         axios.get("https://udemyclone-api.onrender.com/api/getcartdata").
         then((res)=>setItems(res.data)).catch((err)=>console.log("Cart error", err))
-    },[cardData])
+    },[items])
 
     const addcartitem = async(item)=>{
         console.log(item.id);
