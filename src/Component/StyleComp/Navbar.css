@@ -139,6 +139,7 @@
     justify-content: center;
     align-items: center;
     gap: 18px 0;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .hoverBlock2{
     display: none;
@@ -168,6 +169,7 @@
     justify-content: center;
     align-items: center;
     gap: 18px 0;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 /* cart */
@@ -250,6 +252,91 @@
 
 .link{
     color:var(--grey);
+}
+
+/* after login */
+
+.afterloginshow{
+    display: flex;
+    justify-content: space-around;
+    height: fit-content;
+    position: relative;
+    align-items: center;
+}
+.loginshow{
+    grid-area: 1/6/2/7;
+}
+.logologin{
+    border-radius: 2rem;
+    border: 1px solid;
+    width: 2.4rem;
+    height: 2.3rem;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: #2d2f31;
+    color: white;
+}
+.mylearning{
+    font-size: large!important;
+    color: #636363;
+}
+.logologin p{
+    font-size: x-large;
+}
+.logindrop{
+    display: none;
+    position: absolute;
+    top: 17px;
+    right: 0px;
+    background-color: white;
+    width: auto;
+    z-index: 2;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 1rem 0.8rem;
+}
+.logindrop1{
+    display: flex;
+    gap: 0 10px;
+    align-items: center;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #cecece;
+}
+.logindrop1logo{
+    width: 4rem;
+    height: 4rem;
+    background-color: #101112;
+    text-align: center;
+    border-radius: 2rem;
+    color: white;
+    font-size: 42px!important;
+}
+.logindrop1-namesection{
+    font-size: 19px!important;
+}
+.logindrop1-emailsection{
+    font-size: 14px!important;
+    color: #636363;
+}
+
+.logindrop2{
+    line-height: 30px;
+}
+.logindrop2 p {
+    font-size: large;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #636363;
+}
+
+.hangdroplogin{
+    position: absolute;
+    width: 6rem;
+    left: 8rem;
+    height: 7rem;
+    z-index: 2;
+}
+.dropshowhover:hover .logindrop{
+    display: block;
 }
 
 @media screen and (max-width:756px) 

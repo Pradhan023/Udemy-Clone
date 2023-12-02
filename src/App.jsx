@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import { useState } from 'react'
 import Contextstore from './Component/ContextStore/store'
+import Footer from './Component/NAvFoot/Footer'
 
 const App = () => {
   const [apidata,setApidata] = useState([])
@@ -23,6 +24,7 @@ const App = () => {
       <Navbar/>
       <Navstore/>
       </ContextData.Provider>
+      <Footer/>
       </BrowserRouter>
     </div>
   )

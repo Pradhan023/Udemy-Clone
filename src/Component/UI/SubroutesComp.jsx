@@ -536,6 +536,16 @@ const SubroutesComp = () => {
                                         <p>{item.author}</p>
                                         <p>{`${item.rating} ⭐⭐⭐⭐⭐`}</p>
                                         <h3>{`₹${item.price}`}</h3>
+
+                                        <div className='hovertemplate'>
+                                            <h3>{`${item.heading.slice(0,50)}...`}</h3>
+                                            <span>{item.author}</span>
+                                            <p>{item.des}</p>
+                                            <div className='addtocartbtn'>
+                                            Add to cart
+                                            </div>
+                                        </div>
+                                        
                                     </div>
                                 )
                             }
@@ -636,6 +646,14 @@ const SubroutesComp = () => {
                                                 <p className='maincourseDesc'>8 total .84 lectures .All Levels</p>
                                             </div>
                                             <h3>{"₹"+item.price}</h3>
+                                            <div className='maincardhovertemplate'>
+                                        <h3>{`${item.heading.slice(0,50)}...`}</h3>
+                                        <span>{item.author}</span>
+                                        <p>{item.des}</p>
+                                        <div className='mainaddtocartbtn'>
+                                        Add to cart
+                                        </div>
+                                    </div>
                                         </div>
                                     )
                                 })
@@ -654,6 +672,14 @@ const SubroutesComp = () => {
                                                 <p className='maincourseDesc'>8 total .84 lectures .All Levels</p>
                                             </div>
                                             <h3>{"₹"+item.price}</h3>
+                                            <div className='maincardhovertemplate'>
+                                        <h3>{`${item.heading.slice(0,50)}...`}</h3>
+                                        <span>{item.author}</span>
+                                        <p>{item.des}</p>
+                                        <div className='mainaddtocartbtn'>
+                                        Add to cart
+                                        </div>
+                                    </div>
                                         </div>
                                     )
                                 })

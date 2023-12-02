@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import logo from '../../assets/Udemy_logo.svg.png'
 import { CiSearch } from "react-icons/ci";
 import { MdOutlineShoppingCart } from "react-icons/md";
@@ -8,6 +8,7 @@ import { LiaGreaterThanSolid } from "react-icons/lia";
 import { IoMdClose } from "react-icons/io";
 import '../StyleComp/Navbar.css'
 import { NavLink, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Navbar = () => {
   const category = ["Business","Finance & Accounting","IT & Software","Design","Marketing","Life Style","Photography & Video","Music & Arts","Health & Fitness","Teaching & Academic"]
@@ -67,6 +68,41 @@ const Navbar = () => {
 
   const Nav = useNavigate();
 
+  const token = localStorage.getItem("token")
+  const name = localStorage.getItem("name")
+
+  // console.log(token , name);
+
+  const logout=()=>{
+    localStorage.removeItem("token");
+    localStorage.removeItem("name");
+    localStorage.removeItem("email");
+    Nav("/")
+  }
+  const email= localStorage.getItem("name");  //email token
+
+  // search bar
+  const [searchval,setsearchVal] = useState("")
+  const searchhandle = (e)=>{
+    setsearchVal(
+      e.target.value)
+  }
+
+  const[searchdata,setsearchdata] = useState()
+
+
+  const searcclean = ()=>{
+    setsearchVal('')
+    console.log(searchdata);
+    Nav("/searchcomp", {state:{state:searchval,data:searchdata}})
+  }
+  
+
+  useEffect(()=>{
+    axios.get(`https://udemyclone-api.onrender.com/api/search?searchval=${searchval}`).then((res)=>{
+      setsearchdata(res.data);
+    }).catch((err)=>console.log("Search Api error" , err))
+  },[searcclean])
 
   return (
     <div className='Navhead'>
@@ -119,8 +155,8 @@ const Navbar = () => {
 
       {/* search bar col */}
       <div className='Navsearch'>
-        <label htmlFor='serchbtn' className='navlabel'><CiSearch className='searchicon'/></label>
-        <input id='serchbtn' type='text' placeholder='Search for anything' />
+        <label htmlFor='serchbtn' className='navlabel' onClick={searcclean} ><CiSearch className='searchicon'/></label>
+        <input id='serchbtn' type='text' name="search" value={searchval} placeholder='Search for anything' onChange={searchhandle} />
       </div>
       
       {/* tech col */}
@@ -148,12 +184,45 @@ const Navbar = () => {
 
 
       {/* cart */}
-      <div className='cart'>
+      <div className='cart' onClick={()=>Nav("/cart")}>
         <MdOutlineShoppingCart className='cartlogo'/><span className='cartnumber'>1</span>
       </div>
 
        {/* login sign col */}
-      <div className='navflex navbtn'>
+      {
+        token ? 
+        <div className='afterloginshow loginshow'>
+          {/* <FaRegHeart style={{fontSize:"20px"}}/> */}
+          <p className='mylearning' onClick={()=>Nav("/mylearning")}>My Learning</p>
+
+          <div className='dropshowhover'>
+
+            <div className='logologin'>
+              <p>{name.slice(0,1)}</p>
+            </div>
+
+            <div className="hangdroplogin">
+              <div className='logindrop'>
+                <div className='logindrop1'>
+                <p className='logindrop1logo'>{name.slice(0,1)}</p>
+                <div>
+                <p className='logindrop1-namesection'>{name}</p>
+                <p className='logindrop1-emailsection'>{`${email.slice(0,20)}....`}</p>
+                </div>
+                </div>
+                <div className='logindrop2'>
+                <p onClick={()=>Nav("/mylearning")}>My Learning</p>
+                <p onClick={()=>Nav("/cart")}>My Cart</p>
+                <p onClick={logout}>Logout</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          
+        </div>
+        :
+        <div className='navflex navbtn'>
         <div className='navbtn signin'>
           <p onClick={()=>Nav('/login')}>Log in</p>
         </div>
@@ -164,6 +233,7 @@ const Navbar = () => {
           <IoGlobeOutline style={{fontSize:"23px",marginTop:"3px"}}/>
         </div>
       </div>
+      }
 
 
 
@@ -210,9 +280,9 @@ const Navbar = () => {
                                 :
                                 <div className='side-cat-inner'>
                                 {
-                                  subcategory[index].content.map((item)=>{
+                                  subcategory[index].content.map((item,index)=>{
                                     return(
-                                      <p>
+                                      <p key={index}>
                                         {item}
                                       </p>
                                     )

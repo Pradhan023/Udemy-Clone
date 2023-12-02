@@ -128,12 +128,20 @@ const goals = [
               {
                 data.map((item,index)=>{
                   return(
-                    <div className='carrercard1' key={index}>
+                    <div className='carrercard1 cardmain' key={index}>
                       <img src={item.img} />
                       <h3>{item.heading}</h3>
                       <p>{item.author}</p>
                       <h4>{item.rating}<span>⭐⭐⭐⭐⭐ (486,637)</span></h4>
                       <h3>{`₹${item.price}`}</h3>
+                      <div className='hovertemplate'>
+                          <h3>{`${item.heading.slice(0,50)}...`}</h3>
+                          <span>{item.author}</span>
+                          <p>{item.des}</p>
+                          <div className='addtocartbtn'>
+                          Add to cart
+                          </div>
+                      </div>
                     </div>
                   )
                 })
@@ -181,12 +189,20 @@ const goals = [
             {
               data.map((item,index)=>{
                 return(
-                  <div key={index} className='learnerCard'>
+                  <div key={index} className='learnerCard cardmain'>
                     <img src={item.img} />
                     <h3>{item.heading}</h3>
                     <p>{item.author}</p>
                     <h4>{item.rating}<span>⭐⭐⭐⭐⭐ (339,085)</span></h4>
                     <h3>{`₹${item.price}`}</h3>
+                      <div className='hovertemplate'>
+                          <h3>{`${item.heading.slice(0,50)}...`}</h3>
+                          <span>{item.author}</span>
+                          <p>{item.des}</p>
+                          <div className='addtocartbtn'>
+                          Add to cart
+                          </div>
+                      </div>
                   </div>
                 )
               })
@@ -335,11 +351,11 @@ const goals = [
 
         {/* end card home instructor */}
         
-        <div className='instructorsection'>
-          <div className='instructorsection1'>
+        <div className='instructorsectionparent'>
+          <div>
             <img src='https://s.udemycdn.com/home/non-student-cta/instructor-1x-v3.jpg' />
           </div>
-          <div className='instructorsection2'>
+          <div className='instructorsectionparent1'>
             <h1>Become an instructor</h1>
             <p>Instructors from around the world teach millions of learners on Udemy. We provide the tools and skills to teach what you love.</p>
             <div className='instrBtn'>Start teaching today</div>

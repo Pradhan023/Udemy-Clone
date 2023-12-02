@@ -413,7 +413,7 @@
 }
 
 /* home instructor */
-.instructorsection{
+.instructorsectionparent{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -421,15 +421,16 @@
     background-color: white;
     padding: 90px 0;
 }
-.instructorsection2{
+.instructorsectionparent1{
     width: 25%;
     line-height: 28px;
+    background-color: white;
 }
-.instructorsection2 h1{
+.instructorsectionparent1 h1{
     font-size: 40px;
     margin-bottom: 15px;
 }
-.instructorsection2 p{
+.instructorsectionparent1 p{
     font-size: large;
 }
 .instrBtn{

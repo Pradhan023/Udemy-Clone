@@ -78,10 +78,103 @@
     flex-wrap: wrap;
     gap: 5px 0;
     width: 240px;
+    position: relative;
 }
 .cardmain img{
     width: 240px;
     height: 135px;
+}
+/* hover template */
+
+.hovertemplate{
+    display: none;
+    position: absolute;
+    background-color: white;
+    left:50px;
+    bottom: 50px;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    padding: 20px 8px 0;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.hovertemplate h3{
+    height: 66px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.hovertemplate p{
+    margin-top: 10px;
+    height: 7rem;
+    line-height: 30px;
+    font-weight: 500;
+}
+.addtocartbtn{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    background-color: #a435f0;
+    height: 40px;
+    color: white;
+}
+.hovertemplate span{
+    font-size: small;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(160, 160, 160);
+}
+.cardmain:hover .hovertemplate{
+    display: block;
+    /* z-index: 2; */
+}
+
+
+/* main card hover template */
+
+.maincardhovertemplate{
+    display: none;
+    position: absolute;
+    background-color: white;
+    left:150px;
+    bottom: 50px;
+    width: 80%;
+    height: 100%;
+    z-index: 2;
+    padding: 20px 8px 0;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.maincardhovertemplate h3{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.maincardhovertemplate p{
+    line-height: 25px;
+    font-weight: 500;
+}
+.mainaddtocartbtn{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    background-color: #a435f0;
+    height: 40px;
+    color: white;
+    cursor: pointer;
+}
+.mainaddtocartbtn:hover{
+    background-color: #812db9;
+}
+.maincardhovertemplate span{
+    font-size: small;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(160, 160, 160);
+}
+.maincontentcard:hover .maincardhovertemplate{
+    display: block;
 }
 
 /* popular topics */
@@ -233,6 +326,7 @@
     border-top: 1px solid rgb(208, 208, 208);
     padding-top: 20px;
     width: 62rem;
+    position: relative;
 }
 .maincontentcard img{
     width: 25%;
@@ -246,3 +340,4 @@
 .maincontentimg{
     width: 62rem;
 }
+
