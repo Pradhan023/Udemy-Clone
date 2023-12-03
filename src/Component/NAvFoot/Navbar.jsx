@@ -79,7 +79,7 @@ const Navbar = () => {
     localStorage.removeItem("email");
     Nav("/")
   }
-  const email= localStorage.getItem("name");  //email token
+  const email= localStorage.getItem("email");  //email token
 
   // search bar
   const [searchval,setsearchVal] = useState("")
@@ -103,6 +103,14 @@ const Navbar = () => {
       setsearchdata(res.data);
     }).catch((err)=>console.log("Search Api error" , err))
   },[searcclean])
+
+  // cart number
+  const[num,setNum] =useState([])
+  useEffect(()=>{
+    axios.get("https://udemyclone-api.onrender.com/api/getcartdata").
+    then((res)=>setNum(res.data)).catch((err)=>console.log("Cart error", err))
+  },[num])
+
 
   return (
     <div className='Navhead'>
@@ -185,7 +193,7 @@ const Navbar = () => {
 
       {/* cart */}
       <div className='cart' onClick={()=>Nav("/cart")}>
-        <MdOutlineShoppingCart className='cartlogo'/><span className='cartnumber'>1</span>
+        <MdOutlineShoppingCart className='cartlogo'/><span className='cartnumber'>{num.length}</span>
       </div>
 
        {/* login sign col */}
@@ -206,8 +214,8 @@ const Navbar = () => {
                 <div className='logindrop1'>
                 <p className='logindrop1logo'>{name.slice(0,1)}</p>
                 <div>
-                <p className='logindrop1-namesection'>{name}</p>
-                <p className='logindrop1-emailsection'>{`${email.slice(0,20)}....`}</p>
+                <p className='logindrop1-namesection'>{name.slice(0,22)}</p>
+                <p className='logindrop1-emailsection'>{`${email.slice(0,15)}...`}</p>
                 </div>
                 </div>
                 <div className='logindrop2'>
@@ -252,10 +260,27 @@ const Navbar = () => {
                 </div>
 
               {/* btn */}
-                <div className='sidebar-btn'>
-                  <p>Log in</p>
-                  <p>Sign up</p>
+                {
+                  token ?
+                  <div className='sidebarloginsection'>
+                    <p className='sidelogo'>{name.slice(0,1)}</p>
+                    <div className='sidebarloginsection1'>
+                      <p className='sidelogoName'>{name}</p>
+                      <p>{`${email.slice(0,15)}`}</p>
+                      <p onClick={logout}>Log Out</p>
+                    </div>
+                  </div>
+                  :<div className='sidebar-btn'>
+                  <p onClick={()=>{
+                    Nav("/login"),
+                    handleclick()
+                  } }>Log in</p>
+                  <p onClick={()=>{
+                    Nav("/signup"),
+                    handleclick()
+                  }}>Sign up</p>
                 </div>
+                }
 
 
                 {/* all category */}
@@ -268,16 +293,14 @@ const Navbar = () => {
                             // if(item === subcategory.category)
                             return(
                               <div key={index}  >
-                              <div className='side-cat-outter'onClick={sideclick}>
-                              <p className='' >
+                              <div className='side-cat-outter'>
+                              <p className='' onClick={sideclick}>
                                 {item}
                               </p>
                               <LiaGreaterThanSolid className='arrow'/>
                               </div>
 
-                              {
-                                side ? " "
-                                :
+                              
                                 <div className='side-cat-inner'>
                                 {
                                   subcategory[index].content.map((item,index)=>{
@@ -289,7 +312,6 @@ const Navbar = () => {
                                   })
                                 }
                               </div>
-                              }
                               </div>
                             )
                           })

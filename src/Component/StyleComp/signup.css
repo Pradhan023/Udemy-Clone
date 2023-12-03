@@ -55,7 +55,7 @@ input:valid+label{
     background-color: #8d2ace;
 }
 .term{
-    width: 22%;
+    width: 100%;
     text-align: center;
     font-size: 11.5px;
     margin-top: 15px;
@@ -74,4 +74,8 @@ input:valid+label{
     color:#a435f0;
     cursor: pointer;
     border-bottom: 1px solid #a435f0;
+}
+
+input{
+    z-index: 1;
 }

@@ -162,3 +162,130 @@
 .searchmaincontentcard:hover .searchcardhovertemplate{
     display: block;
 }
+
+@media (max-width:756px){
+    .searchmainsection{
+        background-color: white;
+        padding: 50px 4%;
+    }
+    /* .searchfilterstatic{ 
+        display: flex;
+        gap: 0 10px;
+        margin: 10px 0 30px 0;
+        cursor: pointer;
+    } */
+    
+    .resultno{
+        font-size: 2rem;
+    }   
+    
+    /* main */
+    
+    .searchmainContentParent{
+        display: flex;
+        flex-wrap: wrap;
+        line-height: 25px;
+        justify-content: space-between;
+    }
+    
+    .searchmaincontentcard-section{
+        width: 100%;
+    }
+    
+    .searchrating{
+        display: none;
+    }
+    
+    .searchmaincontentcard1{
+        width: 100%;
+    }
+    .searchmaincontentcard{
+        flex-direction: column;
+        padding-top: 20px;
+        gap: 10px 0px;
+        width: 100%;
+    }
+    
+    .searchheading{
+        width: 100%;
+    }
+    .searchmaincontentcard img{
+        width:100%;
+    }
+    
+    .searchmainauthor{
+        font-size: 13px;
+        width: 100%;
+    }
+    
+    .searchmaincourseDesc{
+        font-size: 13px;
+        width: 100%;
+        
+    }
+    .searchmaindes{
+        width: 80%;
+        font-size: 80%;
+    }
+    
+    
+    /* hover template */
+    
+    .searchcardhovertemplate{
+        display: none;
+        position: absolute;
+        left:10px;
+        bottom: 50px;
+        width: 90%;
+        height: 80%;
+    }
+    .searchcardhovertemplate h3{
+        font-size: x-large;
+        height: 6rem;
+    }
+    .searchcardhovertemplate p{
+        line-height:28px;
+        font-weight: 500;
+        height: 11rem;
+    }
+}
+
+@media (min-width:756px) and (max-width:1024px){
+    .searchrating{
+        display: none;
+    }
+    /* main */
+
+    .searchmainContentParent{
+        display: flex;
+        flex-wrap: wrap;
+        line-height: 25px;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .searchmaincontentcard-section{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* hover template */
+
+    .searchcardhovertemplate{
+        display: none;
+        position: absolute;
+        background-color: white;
+        left:20px;
+        width: 90%;
+    }
+    .searchcardhovertemplate h3{
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        height: 2.5rem;
+    }
+    .searchcardhovertemplate p{
+        line-height: 25px;
+        font-weight: 500;
+        height: 6rem;
+    }
+}

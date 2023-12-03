@@ -10,7 +10,7 @@ const Cart = () => {
   useEffect(()=>{
     axios.get("https://udemyclone-api.onrender.com/api/getcartdata").
     then((res)=>setItems(res.data)).catch((err)=>console.log("Cart error", err))
-  },[])
+  },[items,Nav])
   // console.log(items.length);
 
   const[sum,setSum] = useState()
@@ -25,7 +25,7 @@ const Cart = () => {
 
    const stripePayment = async()=>{
    
-    const stripe =await loadStripe("pk_test_51OFIngSEzJx90BYMsS58schJO5W4mfb11nhMesoKWfuGwRPqPNyK7cRkpqoxSPdrZZjAHcwlKx1UHmOHvad4Xx0X00jzoYxvbR")
+  const stripe =await loadStripe("pk_test_51OFIngSEzJx90BYMsS58schJO5W4mfb11nhMesoKWfuGwRPqPNyK7cRkpqoxSPdrZZjAHcwlKx1UHmOHvad4Xx0X00jzoYxvbR")
 
   const body ={
     Cartitem:items,
@@ -39,9 +39,9 @@ const Cart = () => {
           headers:headers,
           body:JSON.stringify(body)
   })
-  await axios.post("https://udemyclone-api.onrender.com/api/mylearning",items)
+  await axios.post("https://udemyclone-api.onrender.com/api/mylearning",items)  //addlearning
 
-  await axios.delete("https://udemyclone-api.onrender.com/api/deleteallcart")
+  await axios.delete("https://udemyclone-api.onrender.com/api/deleteallcart")  // delete
   const session= await response.json();
 
   const result =stripe.redirectToCheckout({
@@ -50,7 +50,6 @@ const Cart = () => {
   if(result.error){
     console.log(result.error)
   }
-
   }
 
   if(items.length === 0)
@@ -64,6 +63,9 @@ const Cart = () => {
     )
   }
 
+  const handleremove = async(itemid)=>{
+    await axios.post("https://udemyclone-api.onrender.com/api/removeitem",{id:itemid})
+  }
 
   return (
     <div className='cartparent'>
@@ -78,6 +80,7 @@ const Cart = () => {
        <div>
        {
         items && items.map((item,index)=>{
+          // const{id=item.id} = item
           return(
             <div key={index} className='cartcontentcard'>
                 <img src={item.img} />
@@ -88,7 +91,7 @@ const Cart = () => {
                     <h3>{`${item.rating} ⭐⭐⭐⭐⭐`}</h3>
                     <p className='cartcourseDesc'>8 total .84 lectures .All Levels</p>
                 </div>
-                <p>Remove</p>
+                <p className='remove' onClick={()=>handleremove(item.id)}>Remove</p>
                 <h2>{"₹"+item.price}</h2>
               </div>
           )

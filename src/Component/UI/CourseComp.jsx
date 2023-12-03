@@ -610,7 +610,7 @@ const CourseComp = () => {
 
                 {/* content card */}
 
-                <div>
+                <div className='maincontentsection'>
                     {
                         cardData.filter(item=>{
                             if (item.id%2 === 0) {

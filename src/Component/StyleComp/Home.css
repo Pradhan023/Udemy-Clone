@@ -445,3 +445,404 @@
 .instrBtn:hover{
     background-color: rgb(53, 53, 53);
 }
+
+@media (max-width:756px){
+    .topimg_text{display: none;}
+    .featureTopicsMain{
+        display: none;
+    }
+    .businesssecton{display: none;}
+    .customerCardSection{display: none;}
+    .instructorsectionparent{display: none;}
+    .hometop-img{
+        z-index: -3;
+    }
+    .hometop-img img{
+        width: 95%;
+        height: 10rem;
+    }
+    /* home second section */
+    .homecompanysection{
+        height: 15rem;
+        font-size: 19px;
+        font-weight: 500;
+        gap: 20px 0;
+    }
+    .homecompanysection p{
+        text-align: center;
+    }
+    .homesection-1{
+        display: flex;
+        width: 90%;
+        gap: 10px 30px;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .homesection-1 img{
+        width: 50px;
+    }
+     
+    /* home course section*/
+
+    .selectionCourse{
+        width: 100%;
+    }
+    .slectioncourse-1{
+        width: 90%;
+        margin:40px 0 ;
+    }
+    .selectioninner{
+        width: 100%;
+    }
+    .slectioncourse-1 h1{
+        font-size: 30px;
+        padding-bottom: 5px;
+    }
+    .slectioncourse-1P{
+        font-size: 15px;
+        padding-bottom: 20px;
+    }
+    .slectioncourse-2{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .slectioncourse-2 span{
+        font-size: 60%;
+    }
+    .span1{
+        padding-bottom: 3px;
+    }
+
+    .career1{
+        border: 2px solid rgb(211, 211, 211);
+        padding: 20px 10px;
+        width: 93%;
+    }
+
+    .career1 h2{
+        font-size: 20px;
+    }
+    .career1-p1{
+        width: 100%;
+        font-size: 12px;
+        text-align: justify;
+        padding: 5px 0;
+    }
+    .explore-btn{
+        padding: 6px 10px;
+        margin-top: 10px;
+        font-weight: 400;
+    }
+
+    .carrerCard{
+        line-height: 20px;
+        width: 100%;
+        gap: 15px 0px;
+        padding-top: 0px;
+    }
+    .carrercard1{
+        width: 100%;
+    }
+    .carrercard1 img{
+        width: 100%;
+        height: 11rem;
+    }
+    /* goals */
+    .learnsection{
+        flex-direction: column;
+        justify-content: start;
+        gap: 30px 0;
+        padding: 70px 0;
+        width: 100%;
+    }
+    .learnsection h1{
+        width: 90%;
+        font-size: 25px;
+    }
+    .learnsection1{
+        display: flex;
+        flex-direction: column;
+        gap: 18px 0px;
+        width: 88%;
+    }
+    .goalheading{
+        font-size: 100%;
+        height: 50%;
+    }
+    .goalsinner{
+        width: 100%;
+        text-align: justify;
+        padding: 18px 5px;
+        background-color: white;
+    }
+    .goalsinner img{
+        width: 20px;
+        margin-bottom: 8px;
+    }
+    .logo{
+        display: flex;
+        justify-content: start;
+        gap: 0 8px;
+        padding: 10px 0;
+    }
+    .logo span{
+        padding: 6px 5px;
+        font-size: 12px;
+    }
+    .playiconcontainer{
+        gap: 0 10px;
+        font-weight: 600;
+        margin-top: 10px;
+    }
+    .playiconcontainer span{
+        font-size: 15px;
+    }
+    .playicon{
+        font-size: x-large;
+    }
+
+    /* learner card */
+    .learnerview-section{
+        padding: 40px 0;
+        width: 100%;
+    }
+    .learnerview-section h1{
+        width: 90%;
+        margin-bottom: 15px;
+    }
+    .learnerSection{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        gap: 15px 0px;
+        line-height: 22px;
+        width: 100%;
+    }
+    .learnerCard{
+        width: 15rem;
+    }
+
+    /* top category */
+    .topinnercategories{
+        width: 80%;
+    }
+}
+
+@media (min-width:756px) and (max-width:1024px){
+    .hometop-img{
+        padding-bottom: 2rem;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+    .hometop-img img{
+        width: 95%;
+        height: 17rem;
+    }
+    .topimg_text{
+        position: absolute;
+        background-color: white;
+        width: 18rem;
+        top: 40px;
+        left: 50px;
+        padding: 10px 10px;
+        line-height: 50px;
+    }
+    .topimg_text h1{
+        font-size: x-large;
+        margin-bottom: -5px;
+    }
+    .topimg_text p{
+        font-size: small;
+        line-height: 18px;
+    }
+    .topimgbtn{
+        height: 3rem;
+        padding: 0px 10px;
+    }
+    
+    /* home second section */
+    .homecompanysection{
+        height: 12rem;
+        gap: 20px 0;
+    }
+    .homesection-1 img{
+        width: 60px;
+    }
+    
+    /* home course section*/
+    
+    .selectionCourse{
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .slectioncourse-1{
+        width: 88%;
+        margin:40px 0 ;
+    }
+    .selectioninner{
+        width: 100%;
+    }
+    .slectioncourse-1 h1{
+        font-size: 32px;
+        padding-bottom: 10px;
+    }
+    .slectioncourse-1P{
+        font-size: 17px;
+        padding-bottom: 20px;
+    }
+    .career1{
+        border: 2px solid rgb(211, 211, 211);
+        padding: 30px 22px;
+    }
+    
+    .career1 h2{
+        font-size: 30px;
+    }
+    .career1-p1{
+        width: 100%;
+        padding: 15px 0;
+        text-align: justify;
+    }
+    
+    .carrerCard{
+        display: flex;
+        line-height: 25px;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px 0px;
+        padding-top: 15px;
+    }
+    
+    /* learner card */
+    .learnerview-section{
+        padding: 50px 0;
+        width: 100%;
+    }
+    .learnerview-section h1{
+        width: 88%;
+        margin-bottom: 15px;
+    }
+    .learnerSection{
+        flex-direction: row;
+        gap: 15px 0;
+        line-height: 23px;
+        width: 80%;
+    }
+    
+    /* feature */
+    .featureinner{
+        width: 100%;
+    }
+    .featureinner h2{
+        font-size: large;
+    }
+    .featurecol1{
+        gap: 10px 0;
+    }
+    .featurecol1 p{
+        font-size: 15px;
+    }
+    .featurecol1 span{
+        font-size: x-small;
+    }
+    .explorebtn{
+        padding: 10px 5px;
+    }
+    
+    /* bussines section */
+    .businesssecton{
+        padding: 50px 0;
+    }
+    .businesssecton1{
+        display: flex;
+        justify-content: center;
+    }
+    .businesscol1{
+        width: 40%;
+    }
+    .businesscol2{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40%;
+    }
+    .businesscol1 img{
+        width: 10rem;
+    }
+    .businesscol1 h1{
+        font-size: x-large;
+    }
+    .businesscol1 ul{
+       font-size: 18px;
+       line-height: 28px;
+    }
+    .businesscol2 img{
+        width: 100%;
+        height: 95%;
+    }
+    .colbtn{
+        gap: 0 8px;
+    }
+    .colbtn1{
+        padding: 10px 10px;
+    }
+    .colbtn2{
+        padding: 10px 10px;
+    }
+    
+    /* customer */
+    .customerCardSection{
+        padding: 40px 0;
+    }
+    .customerCard{
+        width: 70%;
+        padding: 40px 25px;
+    }
+    .customercol1{
+        width: 58%;
+        line-height: 30px;
+        text-align: justify;
+    }
+    .customercol1 img{
+        width: 22px;
+    }
+    .customercol2{
+        line-height: 38px;
+    }
+    .customercol2 img{
+        width: 130px;
+    }
+    .fullstory{
+        margin-top: 20px;    
+    }
+    
+    /* home instructor */
+    .instructorsectionparent{
+        gap: 0 40px;
+        padding: 80px 0;
+    }
+    .instructorsectionparent1{
+        width: 40%;
+        line-height: 32px;
+    }
+    .instructorsectionparent1 h1{
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+    .instructorsectionparent1 p{
+        font-size: large;
+    }
+    .instrBtn{
+        border: 1px solid;
+        padding: 10px 10px;
+        margin-top: 20px;
+    }
+}

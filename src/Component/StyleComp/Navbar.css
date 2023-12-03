@@ -289,7 +289,7 @@
     top: 17px;
     right: 0px;
     background-color: white;
-    width: auto;
+    width: 16rem;
     z-index: 2;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     padding: 1rem 0.8rem;
@@ -310,6 +310,7 @@
     border-radius: 2rem;
     color: white;
     font-size: 42px!important;
+    text-transform: capitalize;
 }
 .logindrop1-namesection{
     font-size: 19px!important;
@@ -407,6 +408,10 @@
         top: -1px;
     }
 
+
+    .afterloginshow{
+        display: none;
+    }
     /* sidebar */
     .menuicon{
         display: flex;
@@ -481,7 +486,7 @@
     }
 
     .side-cat-inner{
-        /* display: none; */
+        /* display: block; */
     }
 
     .side-tech{
@@ -493,5 +498,25 @@
     }
     .side-conent p{
         color: var(--grey);
+    }
+    /* login side */
+    .sidebarloginsection{
+        display: flex;
+        gap: 0 10px;
+        align-items: center;
+        padding: 10px 10px;
+    }
+    .sidelogo{
+        text-transform: capitalize;
+        background-color: black;
+        color: white;
+        text-align: center;
+        border-radius: 2rem;
+        padding: 6px 16px;
+        font-size: xx-large!important;
+    }
+    .sidelogoName{
+        text-transform: capitalize;
+        font-size: large!important;
     }
 }
