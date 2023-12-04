@@ -111,6 +111,11 @@ const Navbar = () => {
     then((res)=>setNum(res.data)).catch((err)=>console.log("Cart error", err))
   },[num])
 
+  const[searchbtnval,setSearchbtnval] = useState(false)
+
+  const searchbtnclick = ()=>{
+    setSearchbtnval(!searchbtnval)
+  }
 
   return (
     <div className='Navhead'>
@@ -166,6 +171,24 @@ const Navbar = () => {
         <label htmlFor='serchbtn' className='navlabel' onClick={searcclean} ><CiSearch className='searchicon'/></label>
         <input id='serchbtn' type='text' name="search" value={searchval} placeholder='Search for anything' onChange={searchhandle} />
       </div>
+
+
+      {/* mobile search  */}
+      <div className='mobilesearchicon'  onClick={searchbtnclick}>
+        <CiSearch /> 
+      </div>
+
+      {
+        searchbtnval ? 
+        <div className='mobilesearchsection'>
+          <div className='mobilesearch'>
+          <label htmlFor='serchbtn' className='navlabel' onClick={()=>{searcclean(),searchbtnclick()}} ><CiSearch className='searchicon'/></label>
+          <input id='serchbtn' type='text' name="search" value={searchval} placeholder='Search for anything' onChange={searchhandle} />
+          </div> 
+        </div>
+      : " "
+      }
+
       
       {/* tech col */}
       <div className='navflex tech'>
@@ -267,7 +290,10 @@ const Navbar = () => {
                     <div className='sidebarloginsection1'>
                       <p className='sidelogoName'>{name}</p>
                       <p>{`${email.slice(0,15)}`}</p>
+                      <div className='sidelogout'>
                       <p onClick={logout}>Log Out</p>
+                      <p className='' onClick={()=>{Nav("/mylearning"),handleclick()}}>My Learning</p>
+                      </div>
                     </div>
                   </div>
                   :<div className='sidebar-btn'>
@@ -287,36 +313,40 @@ const Navbar = () => {
 
                 <div className='sidebar-allcategory-container'>
                   <h3>All Categories</h3>
-                      <div className='category-content-list'>
-                        {
-                          category.map((item,index)=>{
-                            // if(item === subcategory.category)
-                            return(
-                              <div key={index}  >
-                              <div className='side-cat-outter'>
-                              <p className='' onClick={sideclick}>
-                                {item}
-                              </p>
-                              <LiaGreaterThanSolid className='arrow'/>
-                              </div>
 
-                              
-                                <div className='side-cat-inner'>
-                                {
-                                  subcategory[index].content.map((item,index)=>{
-                                    return(
-                                      <p key={index}>
-                                        {item}
-                                      </p>
-                                    )
-                                  })
-                                }
-                              </div>
-                              </div>
-                            )
-                          })
-                        }
-                      </div>
+                  <div className='categoryList'>
+                  <div className='innercategoryconatiner'>
+                  {
+                    category.map((item,index)=>{
+                      // if(item === subcategory.category)
+                      return(
+                        <div key={index} className='subcategorylist'>
+                        <p className='sublist'>
+                          <NavLink to={`/course/${item}`} state={subcategory}>
+                          {item}
+                          </NavLink>
+                        </p>
+                        <LiaGreaterThanSolid className='greatericon'/>
+                        <div className='subcategory-InnerList'>
+                          {
+                            subcategory[index].content.map((item,subindex)=>{
+                              return(
+                                <p key={subindex}>
+                                  <NavLink to={`/course/${subcategory[index].category}/${item}`} state={subcategory} onClick={()=>handleclick()} >
+                                    {item}
+                                  </NavLink>
+                                </p>
+                              )
+                            })
+                          }
+                        </div>
+                        </div>
+                      )
+                    })
+                  }
+                  </div>
+                </div>
+                      
                 </div>
 
                 <div className='side-tech'>

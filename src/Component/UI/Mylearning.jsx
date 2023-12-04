@@ -21,7 +21,7 @@ const Mylearning = () => {
                 <div>
                 <h2>{item.heading}</h2>
                 <p className=''>{item.des}</p>
-                <p className=''>{item.author}</p>
+                <p className='learnauthor'>{item.author}</p>
                 <h3>{`${item.rating} ⭐⭐⭐⭐⭐`}</h3>
                 <h2>{"₹"+item.price}</h2>
                 </div>

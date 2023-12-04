@@ -57,7 +57,7 @@ const Login = () => {
             <input type='password' id='pass' name='password' onChange={handleclick} required />
             <label htmlFor='pass'>Password</label>
         </div>
-        <button onClick={()=>signinBtn()} className='subtn'>Sign up</button>
+        <button onClick={()=>signinBtn()} className='subtn'>Sign in</button>
     </form>
     <div className='term'>
         <p>By signing up, you agree to our <span>Terms</span> of Use and <span>Privacy Policy</span>.</p>
