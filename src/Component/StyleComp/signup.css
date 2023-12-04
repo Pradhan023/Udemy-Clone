@@ -67,6 +67,8 @@ input:valid+label{
     font-family: sans-serif;
 }
 .already{
+    text-align: center;
+    width: 100%;
     font-size: 16px;
     margin-top: 15px;
 }

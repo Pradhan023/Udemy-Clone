@@ -63,7 +63,7 @@ const Login = () => {
         <p>By signing up, you agree to our <span>Terms</span> of Use and <span>Privacy Policy</span>.</p>
     </div>
     <div className='already'>
-        <p>Dont have an Account? <span onClick={()=> Nav("/signup")}>Sign in</span></p>
+        <p>Dont have an Account? <span onClick={()=> Nav("/signup")}>Sign up</span></p>
     </div>
     <ToastContainer/>
 </div>
