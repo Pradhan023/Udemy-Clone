@@ -3,6 +3,8 @@ import { IoIosArrowDown } from 'react-icons/io';
 import { IoFilter } from 'react-icons/io5';
 import { useLocation, useNavigate} from 'react-router-dom'
 import '../StyleComp/searchcomp.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
 const SearchComp = () => {
@@ -20,17 +22,27 @@ const SearchComp = () => {
         then((res)=>setItems(res.data)).catch((err)=>console.log("Cart error", err))
     },[catstate])
 
+    const token = localStorage.getItem("token")
+
     const addcartitem = async(item)=>{
         console.log(item.id);
         console.log(items);
         const letsfind = items.find((items)=>items.id === item.id)
 
-        if(letsfind)
-        {
-            alert("Items is already added Go to cart",Nav("/cart") );
+        
+        if(token){
+            const letsfind = items.find((items)=>items.id === item.id)
+  
+            if(letsfind)
+            {
+                toast.success("Item is already Added in cart check your Cart");
+            }
+            else{
+                await axios.post('https://udemyclone-api.onrender.com/api/addcart',item);
+            }
         }
         else{
-            await axios.post('https://udemyclone-api.onrender.com/api/addcart',item);
+            toast.warn("Need to Login first");
         }
     }
 
@@ -98,6 +110,8 @@ const SearchComp = () => {
                 
             </div>
         </div>
+
+        <ToastContainer/>
 
     </div>
   )

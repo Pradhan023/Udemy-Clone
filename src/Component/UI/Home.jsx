@@ -3,6 +3,8 @@ import '../StyleComp/Home.css'
 import { FaCirclePlay } from "react-icons/fa6";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Home = () => {
   const data = [
@@ -84,18 +86,27 @@ const [items,setItems] =useState();
         then((res)=>setItems(res.data)).catch((err)=>console.log("Cart error", err))
     },[items])
 
+    const token = localStorage.getItem("token")
+
     const addcartitem = async(item)=>{
         console.log(item.id);
         console.log(items);
         const letsfind = items.find((items)=>items.id === item.id)
 
-        if(letsfind)
-        {
-            alert("Items is already added Go to cart",Nav("/cart") );
-        }
-        else{
-            await axios.post('https://udemyclone-api.onrender.com/api/addcart',item);
-        }
+        if(token){
+          const letsfind = items.find((items)=>items.id === item.id)
+
+          if(letsfind)
+          {
+              toast.success("Item is already Added in cart check your Cart");
+          }
+          else{
+              await axios.post('https://udemyclone-api.onrender.com/api/addcart',item);
+          }
+      }
+      else{
+          toast.warn("Need to Login first");
+      }
     }
 
   return (
@@ -389,6 +400,7 @@ const [items,setItems] =useState();
           </div>
         </div>
 
+        <ToastContainer/>
     </div>
   )
 }

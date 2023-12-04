@@ -7,6 +7,8 @@ import { IoIosArrowDown } from "react-icons/io";
 import ss from '../../assets/Screenshot.png'
 import { useContext } from 'react';
 import Contextstore from '../ContextStore/store';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
 const CourseComp = () => {
@@ -444,17 +446,24 @@ const CourseComp = () => {
         then((res)=>setItems(res.data)).catch((err)=>console.log("Cart error", err))
     },[cardData])
 
-    const addcartitem = async(item)=>{
-        console.log(item.id);
-        console.log(items);
-        const letsfind = items.find((items)=>items.id === item.id)
+    const token = localStorage.getItem("token")
 
-        if(letsfind)
-        {
-            alert("Items is already added Go to cart",Nav("/cart") );
+    const addcartitem = async(item)=>{
+        // console.log(item.id);
+        // console.log(items);
+        if(token){
+            const letsfind = items.find((items)=>items.id === item.id)
+
+            if(letsfind)
+            {
+                toast.success("Item is already Added in cart check your Cart");
+            }
+            else{
+                await axios.post('https://udemyclone-api.onrender.com/api/addcart',item);
+            }
         }
         else{
-            await axios.post('https://udemyclone-api.onrender.com/api/addcart',item);
+            toast.warn("Need to Login first");
         }
     }
 
@@ -682,6 +691,7 @@ const CourseComp = () => {
          </div>
             
         </div> 
+        <ToastContainer/>
 
     </div>
   )
