@@ -16,7 +16,7 @@ const App = () => {
     axios.get("https://udemyclone-api.onrender.com/api/getdata").
     then((res)=>setApidata(res.data)).catch((err)=>console.log("Get data error", err))
   },[])
-  console.log(apidata);
+  // console.log(apidata);
 
   const [ContextData] = useState(Contextstore)
   return (
