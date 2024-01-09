@@ -12,7 +12,7 @@ const SearchComp = () => {
     const Data = loc.state.data
     const catstate = loc.state.state
     // console.log(loc);
-    const Nav = useNavigate()
+    // const Nav = useNavigate()
 
     // add to cart
 
@@ -82,6 +82,8 @@ const SearchComp = () => {
 
             <div className='searchmaincontentcard-section'>
                 {
+                    Data === 'Invalid search' ? " "
+                    :
                     Data && Data.map((item,index)=>{
                         return(
                             <div key={index} className='searchmaincontentcard'>

@@ -9,6 +9,7 @@ import { IoMdClose } from "react-icons/io";
 import '../StyleComp/Navbar.css'
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
   const category = ["Business","Finance & Accounting","IT & Software","Design","Marketing","Life Style","Photography & Video","Music & Arts","Health & Fitness","Teaching & Academic"]
@@ -56,15 +57,11 @@ const Navbar = () => {
   ]
 
   const[val,setVal]=useState(true)
-  const[side,setSide] =useState(true)
 
   const handleclick = ()=>{
     setVal(!val)
   }
 
-  const sideclick = ()=>{
-    setSide(!side)
-  }
 
   const Nav = useNavigate();
 
@@ -82,19 +79,23 @@ const Navbar = () => {
   const email= localStorage.getItem("email");  //email token
 
   // search bar
-  const [searchval,setsearchVal] = useState("")
-  const searchhandle = (e)=>{
-    setsearchVal(
-      e.target.value)
-  }
+  const [searchval,setsearchVal] = useState()
 
   const[searchdata,setsearchdata] = useState()
 
 
   const searcclean = ()=>{
     setsearchVal('')
-    console.log(searchdata);
-    Nav("/searchcomp", {state:{state:searchval,data:searchdata}})
+    // console.log(searchdata);
+    console.log(typeof(searchval));
+    if(searchval){
+      console.log(searchdata);
+      Nav("/searchcomp", {state:{state:searchval,data:searchdata}})
+    }
+    else{
+      toast.warn("Invalid Entry")
+    }
+    
   }
   
 
@@ -169,7 +170,7 @@ const Navbar = () => {
       {/* search bar col */}
       <div className='Navsearch'>
         <label htmlFor='serchbtn' className='navlabel' onClick={searcclean} ><CiSearch className='searchicon'/></label>
-        <input id='serchbtn' type='text' name="search" value={searchval} placeholder='Search for anything' onChange={searchhandle} />
+        <input id='serchbtn' type='text' name="search" value={searchval} placeholder='Search for anything' onChange={(e)=>setsearchVal(e.target.value)} />
       </div>
 
 
@@ -183,7 +184,7 @@ const Navbar = () => {
         <div className='mobilesearchsection'>
           <div className='mobilesearch'>
           <label htmlFor='serchbtn' className='navlabel' onClick={()=>{searcclean(),searchbtnclick()}} ><CiSearch className='searchicon'/></label>
-          <input id='serchbtn' type='text' name="search" value={searchval} placeholder='Search for anything' onChange={searchhandle} />
+          <input id='serchbtn' type='text' name="search" value={searchval} placeholder='Search for anything' onChange={(e)=>e.target.value} />
           </div> 
         </div>
       : " "
