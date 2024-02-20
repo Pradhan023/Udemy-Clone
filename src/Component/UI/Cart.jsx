@@ -20,7 +20,7 @@ const Cart = () => {
 
   useEffect(()=>{
     let value = 0
-    items.map((item)=> value+=item.price)
+    newCart.map((item)=> value+=item.price)
     setSum(value)
   },[items])
 
