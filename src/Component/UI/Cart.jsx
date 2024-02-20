@@ -55,7 +55,7 @@ const Cart = () => {
   }
   }
 
-  if(items.length === 0)
+  if(newCart.length === 0)
   {
     return(
       <div className='emptycard' >
