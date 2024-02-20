@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import '../StyleComp/CourseComp.css'
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import { IoIosInformationCircle } from "react-icons/io";
 import { IoFilter } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
@@ -18,9 +18,7 @@ const CourseComp = () => {
     const sub = loc.state
     const filter = sub.filter(item=> params.category === item.category) 
     const content = filter[0].content
-    const Nav = useNavigate()
-
-    
+    const token = localStorage.getItem("token")
 
     const businessPopular_Topics = [
         {
@@ -436,30 +434,44 @@ const CourseComp = () => {
     // console.log(Data);
 
     const cardData = Data && Data.filter(item=> params.category === item.category )
-    console.log(cardData);
+    // console.log(cardData);
 
     // addto cart
 
+    // for unique id we have useId hook
+    
+
     const [items,setItems] =useState();
     useEffect(()=>{
-        axios.get("https://udemyclone-api.onrender.com/api/getcartdata").
+        axios.get("https://udemyclone-api.onrender.com/api/getcartdata",
+        {
+            headers:{
+                Authorization : "Bearer " +token
+            }
+        }).
         then((res)=>setItems(res.data)).catch((err)=>console.log("Cart error", err))
     },[cardData])
 
-    const token = localStorage.getItem("token")
-
     const addcartitem = async(item)=>{
-        // console.log(item.id);
-        // console.log(items);
         if(token){
             const letsfind = items.find((items)=>items.id === item.id)
-
+            
+            // unique id
+            const itemId = Date.now().toString(36);
+            const obj = {...item , id:itemId}
+            // console.log(obj);
             if(letsfind)
             {
                 toast.success("Item is already Added in cart check your Cart");
             }
             else{
-                await axios.post('https://udemyclone-api.onrender.com/api/addcart',item);
+                await axios.post('https://udemyclone-api.onrender.com/api/addcart'
+                ,obj,
+                {
+                    headers:{
+                        Authorization : "Bearer " +token
+                    }
+                });
             }
         }
         else{
