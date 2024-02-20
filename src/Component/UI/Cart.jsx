@@ -1,144 +1,117 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import "../StyleComp/cart.css";
-import { useNavigate } from "react-router-dom";
-import { loadStripe } from "@stripe/stripe-js";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import '../StyleComp/cart.css'
+import { useNavigate } from 'react-router-dom';
+import { loadStripe } from '@stripe/stripe-js';
 
 const Cart = () => {
-  const [items, setItems] = useState([]);
-  const token = localStorage.getItem("token");
+  const [items,setItems] =useState([]);
   const Nav = useNavigate();
-  useEffect(() => {
-    axios
-      .get("https://udemyclone-api.onrender.com/api/getcartdata", {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      })
-      .then((res) => setItems(res.data))
-      .catch((err) => console.log("Cart error", err));
-  }, [items, Nav]);
-  // console.log(items.length);
+  const email = localStorage.getItem("email")
+  useEffect(()=>{
+    axios.get("https://udemyclone-api.onrender.com/api/getcartdata").
+    then((res)=>setItems(res.data)).catch((err)=>console.log("Cart error", err))
+  },[items,Nav])
+  // console.log(items);
 
-  const [sum, setSum] = useState();
+  const newCart = items?.filter(i=> i.proID == email)
 
-  useEffect(() => {
-    let value = 0;
-    items.map((item) => (value += item.price));
-    setSum(value);
-  }, [items]);
+  const[sum,setSum] = useState()
 
-  // payment
+  useEffect(()=>{
+    let value = 0
+    items.map((item)=> value+=item.price)
+    setSum(value)
+  },[items])
 
-  const stripePayment = async () => {
-    const stripe = await loadStripe(
-      "pk_test_51OFIngSEzJx90BYMsS58schJO5W4mfb11nhMesoKWfuGwRPqPNyK7cRkpqoxSPdrZZjAHcwlKx1UHmOHvad4Xx0X00jzoYxvbR"
-    );
+   // payment
 
-    const body = {
-      Cartitem: items,
-      Total: sum,
-    };
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    const response = await fetch(
-      "https://udemyclone-api.onrender.com/api/out/create-checkout-session",
-      {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(body),
-      }
-    );
-    await axios.post(
-      "https://udemyclone-api.onrender.com/api/mylearning",
-      items,
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      }
-    ); //addlearning
+   const stripePayment = async()=>{
+   
+  const stripe =await loadStripe("pk_test_51OFIngSEzJx90BYMsS58schJO5W4mfb11nhMesoKWfuGwRPqPNyK7cRkpqoxSPdrZZjAHcwlKx1UHmOHvad4Xx0X00jzoYxvbR")
 
-    await axios.delete(
-      "https://udemyclone-api.onrender.com/api/deleteallcart",
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      }
-    ); // delete
-    const session = await response.json();
+  const body ={
+    Cartitem:items,
+    Total:sum
+  }
+  const headers={
+    "Content-Type":"application/json"
+  }
+  const response = await fetch("https://udemyclone-api.onrender.com/api/out/create-checkout-session",{
+          method:"POST",
+          headers:headers,
+          body:JSON.stringify(body)
+  })
+  await axios.post("https://udemyclone-api.onrender.com/api/mylearning",items)  //addlearning
 
-    const result = stripe.redirectToCheckout({
-      sessionId: session.id,
-    });
-    if (result.error) {
-      console.log(result.error);
-    }
-  };
+  await axios.delete("https://udemyclone-api.onrender.com/api/deleteallcart")  // delete
+  const session= await response.json();
 
-  if (items.length === 0) {
-    return (
-      <div className="emptycard">
-        <img src="	https://s.udemycdn.com/browse_components/flyout/empty-shopping-cart-v2.jpg" />
-        <p>Your Cart is empty.keep shopping to find course.</p>
-        <div className="emptybtn" onClick={() => Nav("/")}>
-          Keep shopping
-        </div>
-      </div>
-    );
+  const result =stripe.redirectToCheckout({
+    sessionId:session.id
+  })
+  if(result.error){
+    console.log(result.error)
+  }
   }
 
-  const handleremove = async (itemid) => {
-    await axios.post("https://udemyclone-api.onrender.com/api/removeitem", {
-      id: itemid,
-    });
-  };
+  if(items.length === 0)
+  {
+    return(
+      <div className='emptycard' >
+        <img src='	https://s.udemycdn.com/browse_components/flyout/empty-shopping-cart-v2.jpg' />
+        <p>Your Cart is empty.keep shopping to find course.</p>
+        <div className='emptybtn' onClick={()=>Nav("/")}>Keep shopping</div>
+      </div>
+    )
+  }
+
+  const handleremove = async(itemid)=>{
+    await axios.post("https://udemyclone-api.onrender.com/api/removeitem",{id:itemid})
+  }
 
   return (
-    <div className="cartparent">
-      <div className="cartparent1">
-        <div className="cartheading">
-          <h1>Shopping Cart</h1>
-        </div>
+    <div className='cartparent'>
+      
+      <div className='cartparent1'>
 
-        <div className="cartsection">
-          <div>
-            {items &&
-              items.map((item, index) => {
-                // const{id=item.id} = item
-                return (
-                  <div key={index} className="cartcontentcard">
-                    <img src={item.img} />
-                    <div className="cartcontentcard1">
-                      <h2>{item.heading}</h2>
-                      <p className="cartdes">{item.des.slice(0, 84) + "..."}</p>
-                      <p className="cartauthor">{item.author}</p>
-                      <h3>{`${item.rating} ⭐⭐⭐⭐⭐`}</h3>
-                      <p className="cartcourseDesc">
-                        8 total .84 lectures .All Levels
-                      </p>
-                    </div>
-                    <p className="remove" onClick={() => handleremove(item.id)}>
-                      Remove
-                    </p>
-                    <h2>{"₹" + item.price}</h2>
-                  </div>
-                );
-              })}
-          </div>
-          <div className="totalsection">
-            <p>Total:</p>
-            <h1>{`₹ ${sum}`}</h1>
-            <div className="checkout" onClick={stripePayment}>
-              Checkout
-            </div>
-          </div>
-        </div>
+      <div className='cartheading'>
+      <h1>Shopping Cart</h1>
       </div>
-    </div>
-  );
-};
+      
+      <div className='cartsection'>
+       <div>
+       {
+        newCart && newCart.map((item,index)=>{
+          // const{id=item.id} = item
+          return(
+            <div key={index} className='cartcontentcard'>
+                <img src={item.img} />
+                <div className='cartcontentcard1'>
+                    <h2>{item.heading}</h2>
+                    <p className='cartdes'>{item.des.slice(0,84) +"..."}</p>
+                    <p className='cartauthor'>{item.author}</p>
+                    <h3>{`${item.rating} ⭐⭐⭐⭐⭐`}</h3>
+                    <p className='cartcourseDesc'>8 total .84 lectures .All Levels</p>
+                </div>
+                <p className='remove' onClick={()=>handleremove(item.id)}>Remove</p>
+                <h2>{"₹"+item.price}</h2>
+              </div>
+          )
+        })
+      }
+       </div>
+      <div className='totalsection'>
+        <p>Total:</p>
+        <h1>{`₹ ${sum}`}</h1>
+        <div className='checkout' onClick={stripePayment}>Checkout</div>
+      </div>
+      </div>
 
-export default Cart;
+      </div>
+
+    </div>
+  )
+}
+
+export default Cart

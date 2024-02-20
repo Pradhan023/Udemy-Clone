@@ -112,6 +112,8 @@ const Navbar = () => {
     then((res)=>setNum(res.data)).catch((err)=>console.log("Cart error", err))
   },[num])
 
+  const newNum = num?.filter(i=> i.proID == email)
+
   const[searchbtnval,setSearchbtnval] = useState(false)
 
   const searchbtnclick = ()=>{
@@ -217,7 +219,7 @@ const Navbar = () => {
 
       {/* cart */}
       <div className='cart' onClick={()=>Nav("/cart")}>
-        <MdOutlineShoppingCart className='cartlogo'/><span className='cartnumber'>{num.length}</span>
+        <MdOutlineShoppingCart className='cartlogo'/><span className='cartnumber'>{newNum.length}</span>
       </div>
 
        {/* login sign col */}
