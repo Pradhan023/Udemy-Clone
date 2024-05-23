@@ -103,7 +103,7 @@ const [items,setItems] =useState();
               toast.success("Item is already Added in cart check your Cart");
           }
           else{
-              await axios.post('https://udemyclone-api.onrender.com/api/addcart',item);
+              await axios.post('https://udemyclone-api.onrender.com/api/addcart',newObj);
           }
       }
       else{

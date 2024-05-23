@@ -9,7 +9,7 @@ const Mylearning = () => {
     axios.get("https://udemyclone-api.onrender.com/api/getlearningdata").
     then((res)=> setData(res.data)).catch(err=>console.log("My learning" ,err))
   },[])
-  const newCart = items?.filter(i=> i.proID == email)
+  const newCart = data?.filter(i=> i.proID == email)
   return (
     <div className="learningsection">
       <h1>My Learning</h1>

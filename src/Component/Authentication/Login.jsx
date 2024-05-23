@@ -28,6 +28,9 @@ const Login = () => {
                 localStorage.setItem("name",res.data.name)
                 localStorage.setItem("email",res.data.email)
                 localStorage.setItem("token",res.data.token)
+                setTimeout(() => {
+                    Nav("/")
+                }, 4000);
             }
             else{
                 toast.warn(res.data.msg)
@@ -39,16 +42,14 @@ const Login = () => {
             password:""
         })
 
-        setTimeout(() => {
-            Nav("/")
-        }, 4000);
+        
     }
 
   return (
     <div className='signup'>
         
     <form onSubmit={(e)=>e.preventDefault()}>
-    <h4>Signup and start learning</h4>
+    <h4>SignIn and start learning</h4>
         <div className='authfield'>
             <input type='email' id='mail' name='email' onChange={handleclick}  required />
             <label htmlFor='mail'>Email</label>

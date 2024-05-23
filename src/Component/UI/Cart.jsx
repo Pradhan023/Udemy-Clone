@@ -31,7 +31,7 @@ const Cart = () => {
   const stripe =await loadStripe("pk_test_51OFIngSEzJx90BYMsS58schJO5W4mfb11nhMesoKWfuGwRPqPNyK7cRkpqoxSPdrZZjAHcwlKx1UHmOHvad4Xx0X00jzoYxvbR")
 
   const body ={
-    Cartitem:items,
+    Cartitem:newCart,
     Total:sum
   }
   const headers={
@@ -42,7 +42,7 @@ const Cart = () => {
           headers:headers,
           body:JSON.stringify(body)
   })
-  await axios.post("https://udemyclone-api.onrender.com/api/mylearning",items)  //addlearning
+  await axios.post("https://udemyclone-api.onrender.com/api/mylearning",newCart)  //addlearning
 
   await axios.delete("https://udemyclone-api.onrender.com/api/deleteallcart")  // delete
   const session= await response.json();
@@ -82,7 +82,7 @@ const Cart = () => {
       <div className='cartsection'>
        <div>
        {
-        newCart && newCart.map((item,index)=>{
+        newCart?.map((item,index)=>{
           // const{id=item.id} = item
           return(
             <div key={index} className='cartcontentcard'>
