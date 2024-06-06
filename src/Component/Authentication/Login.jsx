@@ -4,9 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import { useCookies } from 'react-cookie'
 
 const Login = () => {
     const Nav = useNavigate();
+    const [cookies, setCookie] = useCookies();
     const [regval,setregVal] = useState([
         {
             email:"",
@@ -20,17 +22,21 @@ const Login = () => {
         })
     }
 
+    const TwoDayFromNow = new Date(Date.now() + 2 * 24 * 60 * 60 * 1000);
+
     const signinBtn = ()=>{
         axios.post('https://udemyclone-api.onrender.com/api/login',regval)
         .then((res)=> {
             if(res.data.msg === "User is successfully Login"){
                 toast.success(res.data.msg);
-                localStorage.setItem("name",res.data.name)
-                localStorage.setItem("email",res.data.email)
-                localStorage.setItem("token",res.data.token)
+                const{name,email,token} = res.data
+                setCookie('token', token, { path: '/', expires: TwoDayFromNow});
+                setCookie('email', email, { path: '/' , expires:TwoDayFromNow });
+                setCookie('name', name, { path: '/', expires:TwoDayFromNow });
                 setTimeout(() => {
                     Nav("/")
                 }, 4000);
+
             }
             else{
                 toast.warn(res.data.msg)

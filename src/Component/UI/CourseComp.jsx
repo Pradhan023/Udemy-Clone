@@ -10,6 +10,7 @@ import Contextstore from '../ContextStore/store';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
 
 const CourseComp = () => {
     const params = useParams()
@@ -440,15 +441,14 @@ const CourseComp = () => {
 
     // addto cart
 
-    const email = localStorage.getItem("email")
-
     const [items,setItems] =useState();
     useEffect(()=>{
         axios.get("https://udemyclone-api.onrender.com/api/getcartdata").
         then((res)=>setItems(res.data)).catch((err)=>console.log("Cart error", err))
     },[cardData])
 
-    const token = localStorage.getItem("token")
+    const [cookies, ] = useCookies();
+    const{token,email} = cookies
 
     const addcartitem = async(item)=>{
         // console.log(item.id);
@@ -481,7 +481,7 @@ const CourseComp = () => {
             {/* category list */}
             <div className='courseComp-flex'>
                 {
-                    content.map((item,index)=>{
+                    content?.map((item,index)=>{
                         return(
                             <p key={index}>
                                 <Link className='link' to={`/course/${params.category}/${item}`} state={sub}>
@@ -512,11 +512,11 @@ const CourseComp = () => {
             <div className='card-conatiner'>
             {/* cards */}
             {
-                cardData.filter(item=>{
+                cardData?.filter(item=>{
                     if (item.id%4 === 0) {
                         return item
                     }
-                }).map((item,index)=>{
+                })?.map((item,index)=>{
                     if(index < 5)
                     {
                     return(
@@ -548,7 +548,7 @@ const CourseComp = () => {
             <h2>Popular Topics</h2>
             <div className='popularTopics'>
                 {
-                    filterpoptop[0].content.map((item,index)=>{
+                    filterpoptop[0]?.content?.map((item,index)=>{
                         return(
                             <div key={index} className='pt-inner'>
                                 <p>{item}</p>
@@ -563,7 +563,7 @@ const CourseComp = () => {
             <h2>Popular Instructor</h2>
             <div className="popular-inst">
                 {
-                    businessPopular_instutor.filter(item=>item.category === params.category).map((item,index)=>{
+                    businessPopular_instutor?.filter(item=>item.category === params.category)?.map((item,index)=>{
                         return(
                             <div key={index} className='inst-inner'>
                                 <img src={item.img} />
@@ -628,7 +628,7 @@ const CourseComp = () => {
                             if (item.id%2 === 0) {
                                 return item
                             }
-                        }).slice(0,3).map((item,index)=>{
+                        })?.slice(0,3)?.map((item,index)=>{
                             return(
                                 <div key={index} className='maincontentcard'>
                                     <img src={item.img} />
@@ -656,11 +656,11 @@ const CourseComp = () => {
                     }
                     <img className='maincontentimg' src={ss} />
                     {
-                        cardData.filter(item=>{
+                        cardData?.filter(item=>{
                             if (item.id%2 === 0) {
                                 return item
                             }
-                        }).slice(3,8).map((item,index)=>{
+                        })?.slice(3,8).map((item,index)=>{
                             return(
                                 <div key={index} className='maincontentcard'>
                                     <img src={item.img} />

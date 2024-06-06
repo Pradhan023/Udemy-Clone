@@ -10,6 +10,7 @@ import '../StyleComp/Navbar.css'
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useCookies } from 'react-cookie';
 
 const Navbar = () => {
   const category = ["Business","Finance & Accounting","IT & Software","Design","Marketing","Life Style","Photography & Video","Music & Arts","Health & Fitness","Teaching & Academic"]
@@ -63,20 +64,17 @@ const Navbar = () => {
   }
 
 
+
   const Nav = useNavigate();
-
-  const token = localStorage.getItem("token")
-  const name = localStorage.getItem("name")
-
-  // console.log(token , name);
+  const [cookies, setCookie,removeCookie] = useCookies();
+  const{token,email,name} = cookies
 
   const logout=()=>{
-    localStorage.removeItem("token");
-    localStorage.removeItem("name");
-    localStorage.removeItem("email");
+    removeCookie("token",{ path: '/' })
+    removeCookie("name",{ path: '/' })
+    removeCookie("email",{ path: '/' })
     Nav("/")
   }
-  const email= localStorage.getItem("email");  //email token
 
   // search bar
   const [searchval,setsearchVal] = useState()
@@ -232,16 +230,16 @@ const Navbar = () => {
           <div className='dropshowhover'>
 
             <div className='logologin'>
-              <p>{name.slice(0,1)}</p>
+              <p>{name?.slice(0,1)}</p>
             </div>
 
             <div className="hangdroplogin">
               <div className='logindrop'>
                 <div className='logindrop1'>
-                <p className='logindrop1logo'>{name.slice(0,1)}</p>
+                <p className='logindrop1logo'>{name?.slice(0,1)}</p>
                 <div>
-                <p className='logindrop1-namesection'>{name.slice(0,22)}</p>
-                <p className='logindrop1-emailsection'>{`${email.slice(0,15)}...`}</p>
+                <p className='logindrop1-namesection'>{name?.slice(0,22)}</p>
+                <p className='logindrop1-emailsection'>{`${email?.slice(0,15)}...`}</p>
                 </div>
                 </div>
                 <div className='logindrop2'>
@@ -289,10 +287,10 @@ const Navbar = () => {
                 {
                   token ?
                   <div className='sidebarloginsection'>
-                    <p className='sidelogo'>{name.slice(0,1)}</p>
+                    <p className='sidelogo'>{name?.slice(0,1)}</p>
                     <div className='sidebarloginsection1'>
                       <p className='sidelogoName'>{name}</p>
-                      <p>{`${email.slice(0,15)}`}</p>
+                      <p>{`${email?.slice(0,15)}`}</p>
                       <div className='sidelogout'>
                       <p onClick={logout}>Log Out</p>
                       <p className='' onClick={()=>{Nav("/mylearning"),handleclick()}}>My Learning</p>

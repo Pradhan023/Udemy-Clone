@@ -57,6 +57,9 @@
 .sublist{
     margin-left: 18px;
 }
+.sublist a{
+    color: black;
+}
 .greatericon{
     position: absolute;
     left: 15rem;
@@ -237,7 +240,9 @@
 .subcategory-InnerList p{
     margin-left: 18px;
 }
-
+.subcategory-InnerList p a{
+    color: black;
+}
 .subcategorylist:hover .subcategory-InnerList{
     display: block;
 }

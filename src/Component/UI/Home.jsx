@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useCookies } from 'react-cookie';
 
 const Home = () => {
   const data = [
@@ -86,8 +87,8 @@ const [items,setItems] =useState();
         then((res)=>setItems(res.data)).catch((err)=>console.log("Cart error", err))
     },[items])
 
-    const token = localStorage.getItem("token")
-    const email = localStorage.getItem("email")
+    const [cookies, ] = useCookies();
+    const{token,email} = cookies
     const addcartitem = async(item)=>{
         console.log(item.id);
         console.log(items);

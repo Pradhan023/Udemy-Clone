@@ -6,6 +6,7 @@ import '../StyleComp/searchcomp.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
 
 const SearchComp = () => {
     const loc = useLocation()
@@ -22,7 +23,8 @@ const SearchComp = () => {
         then((res)=>setItems(res.data)).catch((err)=>console.log("Cart error", err))
     },[catstate])
 
-    const token = localStorage.getItem("token")
+    const [cookies, ] = useCookies();
+    const{token} = cookies
 
     const addcartitem = async(item)=>{
         console.log(item.id);

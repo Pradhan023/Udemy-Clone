@@ -9,6 +9,7 @@ import Contextstore from '../ContextStore/store';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
 
 const SubroutesComp = () => {
     const params = useParams();
@@ -73,7 +74,8 @@ const [items,setItems] =useState();
         then((res)=>setItems(res.data)).catch((err)=>console.log("Cart error", err))
     },[filter])
 
-    const token = localStorage.getItem("token")
+    const [cookies, ] = useCookies();
+    const{token} = cookies
 
     const addcartitem = async(item)=>{
         console.log(item.id);
@@ -460,7 +462,7 @@ const [items,setItems] =useState();
     ]
 
     const Data = useContext(Contextstore)
-    const cardData = Data && Data.filter(item=> subcategory === item.subcat )
+    const cardData = Data && Data?.filter(item=> subcategory === item.subcat )
 
   return (
     <div>
@@ -472,7 +474,7 @@ const [items,setItems] =useState();
         {/* category list */}
         <div className='courseComp-flex'>
             {
-                content.map((item,index)=>{
+                content?.map((item,index)=>{
                     return(
                         <p key={index}>
                             <Link className='link' to={`/course/${params.category}/${item}`} state={sub}>
@@ -503,7 +505,7 @@ const [items,setItems] =useState();
                     <div className='card-conatiner'>
                     {/* cards */}
                     {
-                        cardData.map((item,index)=>{
+                        cardData?.map((item,index)=>{
                             if(index < 5)
                             {
                                 return(
@@ -535,7 +537,7 @@ const [items,setItems] =useState();
                     <h2>Popular Topics</h2>
                     <div className='popularTopics'>
                         {
-                            filterpoptop[0].content.map((item,index)=>{
+                            filterpoptop[0]?.content?.map((item,index)=>{
                                 return(
                                     <div key={index} className='pt-inner'>
                                         <p>{item}</p>
@@ -550,9 +552,9 @@ const [items,setItems] =useState();
                     <h2>Popular Instructor</h2>
                     <div className="popular-inst">
                         {
-                            businessPopular_instutor.filter(item=>item.category === params.category).map((item,index)=>{
+                            businessPopular_instutor?.filter(item=>item.category === params.category)?.map((item,index)=>{
                                 return(
-                                    <div className='inst-inner'>
+                                    <div key={index} className='inst-inner'>
                                         <img src={item.img} />
                                         <div className='inst-row'>
                                             <h3>{item.heading}</h3>
@@ -611,7 +613,7 @@ const [items,setItems] =useState();
 
                         <div>
                             {
-                                cardData.slice(0,3).map((item,index)=>{
+                                cardData?.slice(0,3).map((item,index)=>{
                                     return(
                                         <div key={index} className='maincontentcard'>
                                             <img src={item.img} />
@@ -637,7 +639,7 @@ const [items,setItems] =useState();
                             }
                             <img className='maincontentimg' src={ss} />
                             {
-                                cardData.slice(3,8).map((item,index)=>{
+                                cardData?.slice(3,8).map((item,index)=>{
                                     return(
                                         <div key={index} className='maincontentcard'>
                                             <img src={item.img} />
